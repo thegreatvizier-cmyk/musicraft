@@ -21,7 +21,7 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/musicraft',
+        destination: '/',
         permanent: false,
       },
     ];
