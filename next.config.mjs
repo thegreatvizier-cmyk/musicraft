@@ -4,28 +4,15 @@ import { imageHosts } from './image-hosts.config.js';
 const nextConfig = {
   productionBrowserSourceMaps: true,
   distDir: process.env.DIST_DIR || '.next',
-
   typescript: {
-      ignoreBuildErrors: true,
-    },
-
+    ignoreBuildErrors: true,
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
-
   images: {
     remotePatterns: imageHosts,
   },
-
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/musicraft',
-        permanent: false,
-      },
-    ];
-  }
 };
 
 export default nextConfig;
