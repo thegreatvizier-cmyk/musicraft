@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import MusicraftNav from './musicraft/components/MusicraftNav';
-import MusicraftFooter from './musicraft/components/MusicraftFooter';
-import CookieConsentBanner from './musicraft/components/CookieConsentBanner';
+import MusicraftNav from '../components/MusicraftNav';
+import MusicraftFooter from '../components/MusicraftFooter';
+import CookieConsentBanner from '../components/CookieConsentBanner';
 
 const DSP_LOGOS = [
   { name: 'Spotify', color: '#1DB954', icon: '♫' },
