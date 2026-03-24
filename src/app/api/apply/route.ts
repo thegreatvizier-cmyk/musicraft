@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     `;
 
     const { error } = await resend.emails.send({
-      from: 'MUSICRAFT Applications <onboarding@resend.dev>',
+      from: 'MUSICRAFT Applications <noreply@musicraft.eu>',
       to: ['info@musicraft.eu'],
       subject: `New Application: ${artistName}`,
       html,
