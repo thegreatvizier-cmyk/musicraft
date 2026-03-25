@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -13,13 +13,13 @@ export default function ChatBubble() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
-  const [logged, setLogged] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const messagesRef = useRef<Message[]>([]);
+  const loggedRef = useRef(false);
 
-  // Keep ref in sync with state so callbacks always have latest messages
+  // Keep refs in sync with state
   useEffect(() => { messagesRef.current = messages; }, [messages]);
 
   const scrollToBottom = () => {
@@ -36,9 +36,9 @@ export default function ChatBubble() {
     }
   }, [isOpen, hasGreeted]);
 
-  const logConversation = useCallback(async (msgs: Message[]) => {
-    if (logged || msgs.length < 3) return;
-    setLogged(true);
+  const logConversation = async (msgs: Message[]) => {
+    if (loggedRef.current || msgs.length < 3) return;
+    loggedRef.current = true;
     try {
       await fetch('/api/log', {
         method: 'POST',
@@ -48,11 +48,11 @@ export default function ChatBubble() {
     } catch (e) {
       console.error('Failed to log conversation:', e);
     }
-  }, [logged]);
+  };
 
-  // Reset inactivity timer after each new message
+  // Inactivity timer — log after 3 minutes of no activity
   useEffect(() => {
-    if (messages.length < 3) return;
+    if (messagesRef.current.length < 3) return;
     if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
     inactivityTimer.current = setTimeout(() => {
       logConversation(messagesRef.current);
@@ -60,7 +60,7 @@ export default function ChatBubble() {
     return () => {
       if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
     };
-  }, [messages, logConversation]);
+  }, [messages]);
 
   const handleClose = () => {
     setIsOpen(false);
