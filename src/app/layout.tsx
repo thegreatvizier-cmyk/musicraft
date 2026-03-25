@@ -25,15 +25,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-<html>
-  <body>
-    {children}
-    <Analytics />
-  </body>
-</html>
+    <html lang="en">
+      <body>
+        {children}
+        <Analytics />
+      </body>
+    </html>
   );
 }
