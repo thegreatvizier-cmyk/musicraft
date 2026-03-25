@@ -1,3 +1,5 @@
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server';
 
 const SUMMARY_PROMPT = `You are analyzing a conversation between the Musicraft agent and a website visitor.
