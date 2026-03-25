@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import '../styles/index.css';
+import { Analytics } from '@vercel/analytics/react';
 
 export const viewport: Viewport = {
   width: 'device-width',
