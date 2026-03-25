@@ -17,6 +17,10 @@ export default function ChatBubble() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const messagesRef = useRef<Message[]>([]);
+
+  // Keep ref in sync with state so callbacks always have latest messages
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -32,36 +36,35 @@ export default function ChatBubble() {
     }
   }, [isOpen, hasGreeted]);
 
-  // Log conversation after 3 minutes of inactivity or when closed
   const logConversation = useCallback(async (msgs: Message[]) => {
     if (logged || msgs.length < 3) return;
     setLogged(true);
     try {
-      await fetch('/api/chat', {
+      await fetch('/api/log', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: msgs, conversationEnded: true }),
+        body: JSON.stringify({ messages: msgs }),
       });
-    } catch {}
+    } catch (e) {
+      console.error('Failed to log conversation:', e);
+    }
   }, [logged]);
 
-  // Reset inactivity timer on each new message
+  // Reset inactivity timer after each new message
   useEffect(() => {
     if (messages.length < 3) return;
     if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
     inactivityTimer.current = setTimeout(() => {
-      logConversation(messages);
-    }, 3 * 60 * 1000); // 3 minutes
-
+      logConversation(messagesRef.current);
+    }, 3 * 60 * 1000);
     return () => {
       if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
     };
   }, [messages, logConversation]);
 
-  // Log when chat is closed
   const handleClose = () => {
     setIsOpen(false);
-    logConversation(messages);
+    logConversation(messagesRef.current);
   };
 
   const sendMessage = async () => {
@@ -117,21 +120,12 @@ export default function ChatBubble() {
           box-shadow: 0 4px 24px rgba(124, 111, 222, 0.45);
           z-index: 9999;
           transition: transform 0.2s, box-shadow 0.2s;
-          color: #fff;
-          font-size: 13px;
-          font-weight: 600;
-          font-family: system-ui, sans-serif;
-          letter-spacing: 0.03em;
         }
         .mc-bubble-btn:hover {
           transform: scale(1.08);
           box-shadow: 0 8px 32px rgba(124, 111, 222, 0.6);
         }
-        .mc-bubble-btn svg {
-          width: 22px;
-          height: 22px;
-          fill: white;
-        }
+        .mc-bubble-btn svg { width: 22px; height: 22px; fill: white; }
 
         .mc-window {
           position: fixed;
@@ -183,9 +177,7 @@ export default function ChatBubble() {
           font-weight: 600;
           color: #fff;
           margin: 0;
-          letter-spacing: 0.01em;
         }
-
         .mc-header-text p {
           font-size: 11px;
           color: rgba(255,255,255,0.4);
@@ -205,8 +197,8 @@ export default function ChatBubble() {
           display: flex;
           align-items: center;
           gap: 5px;
-          background: rgba(74, 222, 128, 0.12);
-          border: 1px solid rgba(74, 222, 128, 0.25);
+          background: rgba(74,222,128,0.12);
+          border: 1px solid rgba(74,222,128,0.25);
           border-radius: 20px;
           padding: 3px 9px;
           font-size: 10px;
@@ -214,10 +206,8 @@ export default function ChatBubble() {
           font-weight: 500;
           letter-spacing: 0.04em;
         }
-
         .mc-status-dot {
-          width: 5px;
-          height: 5px;
+          width: 5px; height: 5px;
           background: #4ade80;
           border-radius: 50%;
           box-shadow: 0 0 5px #4ade80;
@@ -228,14 +218,12 @@ export default function ChatBubble() {
           border: none;
           color: rgba(255,255,255,0.5);
           cursor: pointer;
-          width: 26px;
-          height: 26px;
+          width: 26px; height: 26px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 16px;
-          line-height: 1;
           transition: background 0.15s, color 0.15s;
         }
         .mc-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
@@ -249,43 +237,29 @@ export default function ChatBubble() {
           gap: 14px;
           scroll-behavior: smooth;
         }
-
         .mc-messages::-webkit-scrollbar { width: 3px; }
         .mc-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
 
-        .mc-msg {
-          display: flex;
-          gap: 9px;
-          animation: mcFadeUp 0.22s ease;
-        }
-
+        .mc-msg { display: flex; gap: 9px; animation: mcFadeUp 0.22s ease; }
         @keyframes mcFadeUp {
           from { opacity: 0; transform: translateY(6px); }
           to { opacity: 1; transform: translateY(0); }
         }
-
         .mc-msg.user { flex-direction: row-reverse; }
 
         .mc-avatar {
-          width: 28px;
-          height: 28px;
+          width: 28px; height: 28px;
           border-radius: 8px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          margin-top: 2px;
+          display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0; margin-top: 2px;
         }
-
         .mc-avatar.agent { background: linear-gradient(135deg, #7c6fde, #4fb8d4); }
         .mc-avatar.agent svg { width: 14px; height: 14px; fill: white; }
-
         .mc-avatar.user {
           background: rgba(255,255,255,0.07);
           border: 1px solid rgba(255,255,255,0.1);
           color: rgba(255,255,255,0.4);
-          font-size: 11px;
-          font-weight: 500;
+          font-size: 11px; font-weight: 500;
         }
 
         .mc-bubble {
@@ -294,16 +268,13 @@ export default function ChatBubble() {
           border-radius: 14px;
           font-size: 13px;
           line-height: 1.65;
-          font-weight: 400;
         }
-
         .mc-msg.agent .mc-bubble {
           background: rgba(255,255,255,0.06);
           border: 1px solid rgba(255,255,255,0.08);
           color: rgba(255,255,255,0.85);
           border-top-left-radius: 3px;
         }
-
         .mc-msg.user .mc-bubble {
           background: linear-gradient(135deg, rgba(124,111,222,0.35), rgba(79,184,212,0.25));
           border: 1px solid rgba(124,111,222,0.3);
@@ -311,23 +282,15 @@ export default function ChatBubble() {
           border-top-right-radius: 3px;
         }
 
-        .mc-typing {
-          display: flex;
-          gap: 4px;
-          align-items: center;
-          padding: 4px 2px;
-        }
-
+        .mc-typing { display: flex; gap: 4px; align-items: center; padding: 4px 2px; }
         .mc-typing span {
-          width: 5px;
-          height: 5px;
+          width: 5px; height: 5px;
           background: rgba(79,184,212,0.7);
           border-radius: 50%;
           animation: mcBounce 1.2s infinite;
         }
         .mc-typing span:nth-child(2) { animation-delay: 0.2s; }
         .mc-typing span:nth-child(3) { animation-delay: 0.4s; }
-
         @keyframes mcBounce {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
           30% { transform: translateY(-5px); opacity: 1; }
@@ -339,12 +302,7 @@ export default function ChatBubble() {
           background: rgba(0,0,0,0.15);
           flex-shrink: 0;
         }
-
-        .mc-input-row {
-          display: flex;
-          gap: 8px;
-          align-items: flex-end;
-        }
+        .mc-input-row { display: flex; gap: 8px; align-items: flex-end; }
 
         .mc-textarea {
           flex: 1;
@@ -354,37 +312,27 @@ export default function ChatBubble() {
           color: #fff;
           font-family: system-ui, -apple-system, sans-serif;
           font-size: 13px;
-          font-weight: 400;
           padding: 10px 14px;
           resize: none;
           outline: none;
-          min-height: 40px;
-          max-height: 100px;
+          min-height: 40px; max-height: 100px;
           line-height: 1.5;
           transition: border-color 0.2s, background 0.2s;
         }
-        .mc-textarea:focus {
-          border-color: rgba(124,111,222,0.5);
-          background: rgba(255,255,255,0.08);
-        }
+        .mc-textarea:focus { border-color: rgba(124,111,222,0.5); background: rgba(255,255,255,0.08); }
         .mc-textarea::placeholder { color: rgba(255,255,255,0.25); }
 
         .mc-send {
-          width: 40px;
-          height: 40px;
+          width: 40px; height: 40px;
           background: linear-gradient(135deg, #7c6fde, #4fb8d4);
-          border: none;
-          border-radius: 12px;
+          border: none; border-radius: 12px;
           cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display: flex; align-items: center; justify-content: center;
           transition: opacity 0.2s, transform 0.1s;
           flex-shrink: 0;
           box-shadow: 0 2px 12px rgba(124,111,222,0.4);
         }
         .mc-send:hover { opacity: 0.9; transform: scale(1.05); }
-        .mc-send:active { transform: scale(0.96); }
         .mc-send:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
         .mc-send svg { width: 15px; height: 15px; fill: white; }
 
@@ -447,7 +395,7 @@ export default function ChatBubble() {
             {isLoading && (
               <div className="mc-msg agent">
                 <div className="mc-avatar agent">
-                  <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                  <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4-4V7h4V3h-6z"/></svg>
                 </div>
                 <div className="mc-bubble">
                   <div className="mc-typing"><span /><span /><span /></div>
