@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -13,8 +13,10 @@ export default function ChatBubble() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
+  const [logged, setLogged] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const inactivityTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -30,6 +32,38 @@ export default function ChatBubble() {
     }
   }, [isOpen, hasGreeted]);
 
+  // Log conversation after 3 minutes of inactivity or when closed
+  const logConversation = useCallback(async (msgs: Message[]) => {
+    if (logged || msgs.length < 3) return;
+    setLogged(true);
+    try {
+      await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: msgs, conversationEnded: true }),
+      });
+    } catch {}
+  }, [logged]);
+
+  // Reset inactivity timer on each new message
+  useEffect(() => {
+    if (messages.length < 3) return;
+    if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+    inactivityTimer.current = setTimeout(() => {
+      logConversation(messages);
+    }, 3 * 60 * 1000); // 3 minutes
+
+    return () => {
+      if (inactivityTimer.current) clearTimeout(inactivityTimer.current);
+    };
+  }, [messages, logConversation]);
+
+  // Log when chat is closed
+  const handleClose = () => {
+    setIsOpen(false);
+    logConversation(messages);
+  };
+
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
     const userMessage = input.trim();
@@ -44,7 +78,7 @@ export default function ChatBubble() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages })
+        body: JSON.stringify({ messages: newMessages }),
       });
       const data = await response.json();
       const reply = data.content?.[0]?.text || "I'm sorry, something went wrong. Please try again.";
@@ -142,11 +176,7 @@ export default function ChatBubble() {
           justify-content: center;
           flex-shrink: 0;
         }
-        .mc-logo svg {
-          width: 18px;
-          height: 18px;
-          fill: white;
-        }
+        .mc-logo svg { width: 18px; height: 18px; fill: white; }
 
         .mc-header-text h3 {
           font-size: 14px;
@@ -247,14 +277,8 @@ export default function ChatBubble() {
           margin-top: 2px;
         }
 
-        .mc-avatar.agent {
-          background: linear-gradient(135deg, #7c6fde, #4fb8d4);
-        }
-        .mc-avatar.agent svg {
-          width: 14px;
-          height: 14px;
-          fill: white;
-        }
+        .mc-avatar.agent { background: linear-gradient(135deg, #7c6fde, #4fb8d4); }
+        .mc-avatar.agent svg { width: 14px; height: 14px; fill: white; }
 
         .mc-avatar.user {
           background: rgba(255,255,255,0.07);
@@ -378,7 +402,6 @@ export default function ChatBubble() {
         }
       `}</style>
 
-      {/* Floating trigger button */}
       <button className="mc-bubble-btn" onClick={() => setIsOpen(!isOpen)} aria-label="Chat with Musicraft">
         {isOpen ? (
           <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
@@ -387,7 +410,6 @@ export default function ChatBubble() {
         )}
       </button>
 
-      {/* Chat window */}
       {isOpen && (
         <div className="mc-window">
           <div className="mc-header">
@@ -403,7 +425,7 @@ export default function ChatBubble() {
                 <div className="mc-status-dot" />
                 Online
               </div>
-              <button className="mc-close" onClick={() => setIsOpen(false)}>×</button>
+              <button className="mc-close" onClick={handleClose}>×</button>
             </div>
           </div>
 
