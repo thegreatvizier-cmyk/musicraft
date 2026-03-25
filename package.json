@@ -78,4 +78,7 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5"
   }
+  "dependencies": {
+  "@vercel/analytics": "^1.2.2"
+ }
 }
