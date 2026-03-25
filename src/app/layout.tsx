@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import '../styles/index.css';
 import { Analytics } from '@vercel/analytics/react';
+import ChatBubble from '@/components/ChatBubble';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body>
         {children}
         <Analytics />
+        <ChatBubble />
       </body>
     </html>
   );
