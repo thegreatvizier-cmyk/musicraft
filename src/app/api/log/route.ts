@@ -15,65 +15,6 @@ Extract and return ONLY a JSON object with these fields:
 
 Return ONLY the JSON object, no markdown, no backticks, no other text.`;
 
-async function getGoogleAccessToken(): Promise<string> {
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY!.replace(/\\n/g, '\n');
-  const clientEmail = process.env.GOOGLE_CLIENT_EMAIL!;
-
-  const header = { alg: 'RS256', typ: 'JWT' };
-  const now = Math.floor(Date.now() / 1000);
-  const claim = {
-    iss: clientEmail,
-    scope: 'https://www.googleapis.com/auth/spreadsheets',
-    aud: 'https://oauth2.googleapis.com/token',
-    exp: now + 3600,
-    iat: now,
-  };
-
-  const encode = (obj: object) =>
-    Buffer.from(JSON.stringify(obj)).toString('base64url');
-
-  const headerB64 = encode(header);
-  const claimB64 = encode(claim);
-  const signingInput = `${headerB64}.${claimB64}`;
-
-  const keyData = privateKey
-    .replace('-----BEGIN PRIVATE KEY-----', '')
-    .replace('-----END PRIVATE KEY-----', '')
-    .replace(/\s/g, '');
-
-  const binaryKey = Buffer.from(keyData, 'base64');
-  const cryptoKey = await crypto.subtle.importKey(
-    'pkcs8',
-    binaryKey,
-    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
-    false,
-    ['sign']
-  );
-
-  const signature = await crypto.subtle.sign(
-    'RSASSA-PKCS1-v1_5',
-    cryptoKey,
-    Buffer.from(signingInput)
-  );
-
-  const jwt = `${signingInput}.${Buffer.from(signature).toString('base64url')}`;
-
-  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-      assertion: jwt,
-    }),
-  });
-
-  const tokenData = await tokenRes.json();
-  if (!tokenData.access_token) {
-    throw new Error(`Token error: ${JSON.stringify(tokenData)}`);
-  }
-  return tokenData.access_token;
-}
-
 export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json();
@@ -117,50 +58,34 @@ export async function POST(req: NextRequest) {
     try {
       analysis = JSON.parse(summaryText);
     } catch (e) {
-      console.error('Failed to parse summary JSON:', summaryText);
+      console.error('Failed to parse summary:', summaryText);
     }
 
-    // Step 2: Get Google access token
-    const accessToken = await getGoogleAccessToken();
-
-    // Step 3: Write to sheet
-    const spreadsheetId = process.env.GOOGLE_SHEET_ID!;
+    // Step 2: Send to Google Sheet via Apps Script
     const transcript = messages
       .map((m: { role: string; content: string }) => `[${m.role.toUpperCase()}]: ${m.content}`)
       .join('\n\n');
 
     const date = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Prague' });
 
-    const sheetRes = await fetch(
-      `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1!A:G:append?valueInputOption=USER_ENTERED`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          values: [[
-            date,
-            analysis.name,
-            analysis.clientTier,
-            analysis.leadQuality,
-            analysis.summary,
-            analysis.nextStep,
-            transcript,
-          ]],
-        }),
-      }
-    );
+    const scriptRes = await fetch(process.env.GOOGLE_SCRIPT_URL!, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        date,
+        name: analysis.name,
+        clientTier: analysis.clientTier,
+        leadQuality: analysis.leadQuality,
+        summary: analysis.summary,
+        nextStep: analysis.nextStep,
+        transcript,
+      }),
+    });
 
-    const sheetData = await sheetRes.json();
+    const scriptText = await scriptRes.text();
+    console.log('Apps Script response:', scriptText);
 
-    if (sheetData.error) {
-      console.error('Sheets API error:', JSON.stringify(sheetData.error));
-      return NextResponse.json({ error: sheetData.error }, { status: 500 });
-    }
-
-    return NextResponse.json({ success: true, updatedRange: sheetData.updates?.updatedRange });
+    return NextResponse.json({ success: true });
   } catch (err) {
     console.error('Log endpoint error:', err);
     return NextResponse.json({ error: String(err) }, { status: 500 });
