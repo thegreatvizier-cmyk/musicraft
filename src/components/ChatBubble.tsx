@@ -85,7 +85,12 @@ export default function ChatBubble() {
       });
       const data = await response.json();
       const reply = data.content?.[0]?.text || "I'm sorry, something went wrong. Please try again.";
-      setMessages([...newMessages, { role: 'assistant', content: reply }]);
+      const updatedMessages = [...newMessages, { role: 'assistant', content: reply }];
+      setMessages(updatedMessages);
+      // Log after every exchange once we have enough messages
+      if (updatedMessages.length >= 4 && !loggedRef.current) {
+        logConversation(updatedMessages);
+      }
     } catch {
       setMessages([...newMessages, { role: 'assistant', content: "I'm having trouble connecting right now. Please try again in a moment." }]);
     }
@@ -350,7 +355,7 @@ export default function ChatBubble() {
         }
       `}</style>
 
-      <button className="mc-bubble-btn" onClick={() => setIsOpen(!isOpen)} aria-label="Chat with Musicraft">
+      <button className="mc-bubble-btn" onClick={() => { if (isOpen) { handleClose(); } else { setIsOpen(true); } }} aria-label="Chat with Musicraft">
         {isOpen ? (
           <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         ) : (
@@ -427,3 +432,4 @@ export default function ChatBubble() {
     </>
   );
 }
+
