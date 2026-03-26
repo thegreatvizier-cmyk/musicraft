@@ -6,11 +6,12 @@ const SUMMARY_PROMPT = `You are analyzing a conversation between the Musicraft a
 
 Extract and return ONLY a JSON object with these fields:
 {
-  "clientTier": "Artist" | "Label" | "B2B Partner" | "Unknown",
+  "clientTier": "Artist" | "Label" | "Catalogue Owner" | "Unknown",
   "leadQuality": "Hot" | "Warm" | "Cold" | "Browsing",
   "summary": "2-3 sentence summary of who they are and what they need",
   "nextStep": "What was suggested as next step",
-  "name": "Name if mentioned, otherwise Unknown"
+  "name": "First name or full name if mentioned, otherwise Unknown",
+  "email": "Email address if mentioned, otherwise Unknown"
 }
 
 Return ONLY the JSON object, no markdown, no backticks, no other text.`;
@@ -53,6 +54,7 @@ export async function POST(req: NextRequest) {
       summary: 'No summary available',
       nextStep: 'None',
       name: 'Unknown',
+      email: 'Unknown',
     };
 
     try {
@@ -74,6 +76,7 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         date,
         name: analysis.name,
+        email: analysis.email,
         clientTier: analysis.clientTier,
         leadQuality: analysis.leadQuality,
         summary: analysis.summary,
