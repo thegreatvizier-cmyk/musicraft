@@ -45,7 +45,7 @@ export default function MusicraftFooter() {
         </div>
         <div className="flex items-center justify-between pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <span className="text-xs" style={{ color: 'rgba(232,232,240,0.3)' }}>© 2026 MUSICRAFT by Great Vizier Entertainment Ltd. All rights reserved.</span>
-          <span className="text-xs" style={{ color: 'rgba(232,232,240,0.3)' }}>Distributing music to 180+ countries</span>
+          <span className="text-xs" style={{ color: 'rgba(232,232,240,0.3)' }}>Distribution infrastructure powered by FUGA</span>
         </div>
       </div>
     </footer>
