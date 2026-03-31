@@ -97,7 +97,7 @@ export default function ThankYouPage() {
 
           {/* Back to Homepage button */}
           <Link
-            href="/musicraft"
+            href="./"
             style={{
               display: 'inline-block',
               padding: '12px 32px',
