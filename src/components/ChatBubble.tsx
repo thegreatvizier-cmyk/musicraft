@@ -31,7 +31,7 @@ export default function ChatBubble() {
   useEffect(() => {
     if (isOpen && !hasGreeted) {
       setHasGreeted(true);
-      const greeting = "Hello — welcome to Musicraft.\n\nWe work with artists, labels, and music businesses who are looking for more than just distribution. Whether you're building a catalog, running a label, or exploring infrastructure for your own distribution operation, we might be a good fit.\n\nCould you tell me a bit about what you're working on?";
+      const greeting = "Hello — welcome to Musicraft.\n\nWe're a curated music distribution service for independent artists, labels, and catalogue owners. We review every project before onboarding and focus on quality delivery and long-term catalogue management.\n\nWhat are you working on?";
       setMessages([{ role: 'assistant', content: greeting }]);
     }
   }, [isOpen, hasGreeted]);
@@ -432,4 +432,3 @@ export default function ChatBubble() {
     </>
   );
 }
-
