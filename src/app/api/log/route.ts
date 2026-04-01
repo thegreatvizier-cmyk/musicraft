@@ -1,9 +1,9 @@
 export const runtime = 'nodejs';
-
+ 
 import { NextRequest, NextResponse } from 'next/server';
-
+ 
 const SUMMARY_PROMPT = `You are analyzing a conversation between the Musicraft agent and a website visitor.
-
+ 
 Extract and return ONLY a JSON object with these fields:
 {
   "clientTier": "Artist" | "Label" | "Catalogue Owner" | "Unknown",
@@ -13,17 +13,17 @@ Extract and return ONLY a JSON object with these fields:
   "name": "First name or full name if mentioned, otherwise Unknown",
   "email": "Email address if mentioned, otherwise Unknown"
 }
-
+ 
 Return ONLY the JSON object, no markdown, no backticks, no other text.`;
-
+ 
 export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json();
-
+ 
     if (!messages || messages.length < 2) {
       return NextResponse.json({ error: 'Not enough messages' }, { status: 400 });
     }
-
+ 
     // Step 1: Get AI summary
     const summaryRes = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -44,10 +44,10 @@ export async function POST(req: NextRequest) {
         }],
       }),
     });
-
+ 
     const summaryData = await summaryRes.json();
     const summaryText = summaryData.content?.[0]?.text || '{}';
-
+ 
     let analysis = {
       clientTier: 'Unknown',
       leadQuality: 'Browsing',
@@ -56,20 +56,22 @@ export async function POST(req: NextRequest) {
       name: 'Unknown',
       email: 'Unknown',
     };
-
+ 
     try {
       analysis = JSON.parse(summaryText);
     } catch (e) {
       console.error('Failed to parse summary:', summaryText);
     }
-
+ 
     // Step 2: Send to Google Sheet via Apps Script
+    // Store only user messages to keep transcript concise
     const transcript = messages
-      .map((m: { role: string; content: string }) => `[${m.role.toUpperCase()}]: ${m.content}`)
-      .join('\n\n');
-
+      .filter((m: { role: string; content: string }) => m.role === 'user')
+      .map((m: { role: string; content: string }, i: number) => `${i + 1}. ${m.content}`)
+      .join('\n');
+ 
     const date = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Prague' });
-
+ 
     const scriptRes = await fetch(process.env.GOOGLE_SCRIPT_URL!, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -84,13 +86,14 @@ export async function POST(req: NextRequest) {
         transcript,
       }),
     });
-
+ 
     const scriptText = await scriptRes.text();
     console.log('Apps Script response:', scriptText);
-
+ 
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error('Log endpoint error:', err);
     return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }
+ 
