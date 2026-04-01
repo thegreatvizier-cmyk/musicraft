@@ -87,10 +87,6 @@ export default function ChatBubble() {
       const reply = data.content?.[0]?.text || "I'm sorry, something went wrong. Please try again.";
       const updatedMessages = [...newMessages, { role: 'assistant', content: reply }];
       setMessages(updatedMessages);
-      // Log after every exchange once we have enough messages
-      if (updatedMessages.length >= 4 && !loggedRef.current) {
-        logConversation(updatedMessages);
-      }
     } catch {
       setMessages([...newMessages, { role: 'assistant', content: "I'm having trouble connecting right now. Please try again in a moment." }]);
     }
@@ -432,3 +428,4 @@ export default function ChatBubble() {
     </>
   );
 }
+
