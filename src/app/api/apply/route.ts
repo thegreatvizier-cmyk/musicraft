@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { waitUntil } from '@vercel/functions';
 import { NextRequest, NextResponse } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -57,27 +58,31 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    // Screening agent — runs in the background, never blocks the applicant
+    // Screening agent — runs in the background, never blocks the applicant.
+    // waitUntil keeps the request alive after the response is returned;
+    // a plain un-awaited fetch gets cancelled when the function shuts down.
     if (process.env.TRIAGE_WEBHOOK_SECRET) {
-      void fetch('https://forms.musicraft.eu/api/triage-webhook', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-triage-secret': process.env.TRIAGE_WEBHOOK_SECRET,
-        },
-        body: JSON.stringify({
-          artistName,
-          email: contactEmail,
-          country,
-          genres: genreList,
-          catalogSize,
-          previousDistributor,
-          spotifyUrl,
-          appleMusicUrl,
-          youtubeUrl,
-          description,
-        }),
-      }).catch((err) => console.error('Triage webhook failed:', err));
+      waitUntil(
+        fetch('https://forms.musicraft.eu/api/triage-webhook', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-triage-secret': process.env.TRIAGE_WEBHOOK_SECRET,
+          },
+          body: JSON.stringify({
+            artistName,
+            email: contactEmail,
+            country,
+            genres: genreList,
+            catalogSize,
+            previousDistributor,
+            spotifyUrl,
+            appleMusicUrl,
+            youtubeUrl,
+            description,
+          }),
+        }).catch((err) => console.error('Triage webhook failed:', err))
+      );
     }
 
     return NextResponse.json({ success: true }, { status: 200 });
