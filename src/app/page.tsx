@@ -333,6 +333,70 @@ export default function MusicraftHome() {
           </div>
         </section>
 
+        {/* ROYALTY PORTAL */}
+        <section className="py-24 px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            {/* Copy */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-6" style={{ background: 'rgba(124,58,237,0.15)', border: '1px solid rgba(124,58,237,0.3)', color: '#A78BFA' }}>
+                For our artists and labels
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-5" style={{ color: '#E8E8F0', letterSpacing: '-0.02em' }}>Royalty Portal</h2>
+              <p className="text-base mb-8" style={{ color: 'rgba(232,232,240,0.6)', lineHeight: 1.7 }}>
+                Distributed artists and labels log in to see closed monthly statements — earnings by platform and track, downloadable as PDF.
+              </p>
+              <ul className="space-y-4">
+                {[
+                  { icon: '📊', t: 'Transparent statements', d: 'every closed period reconciles to the cent.' },
+                  { icon: '🎧', t: 'Per-platform and per-track breakdown', d: 'see where earnings come from.' },
+                  { icon: '⬇️', t: 'PDF statements', d: 'download an official statement for your accounting.' },
+                ].map((f) => (
+                  <li key={f.t} className="flex gap-3 items-start">
+                    <span className="text-xl leading-none mt-0.5">{f.icon}</span>
+                    <span className="text-sm" style={{ color: 'rgba(232,232,240,0.7)', lineHeight: 1.6 }}>
+                      <strong style={{ color: '#E8E8F0' }}>{f.t}</strong> — {f.d}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Dashboard preview (sample data) */}
+            <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.12)', boxShadow: '0 0 50px rgba(124,58,237,0.15)' }}>
+              <div className="flex items-center gap-2 px-4 py-3" style={{ background: '#171128' }}>
+                <span className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
+                <span className="w-3 h-3 rounded-full" style={{ background: '#febc2e' }} />
+                <span className="w-3 h-3 rounded-full" style={{ background: '#28c840' }} />
+                <span className="text-xs ml-3" style={{ color: '#b0a8cf' }}>royalties.musicraft.eu</span>
+              </div>
+              <div style={{ background: '#ffffff', padding: '18px 18px 20px' }}>
+                <div className="grid grid-cols-3 gap-2 mb-4">
+                  {[
+                    { l: 'Net revenue', v: '€948.20' },
+                    { l: 'Units', v: '512k' },
+                    { l: 'Periods', v: '9' },
+                  ].map((s) => (
+                    <div key={s.l} style={{ background: '#f4f5f8', borderRadius: '10px', padding: '10px 12px' }}>
+                      <div style={{ fontSize: '10px', letterSpacing: '.04em', textTransform: 'uppercase', color: '#8a8896' }}>{s.l}</div>
+                      <div style={{ fontSize: '18px', fontWeight: 800, color: '#141018' }}>{s.v}</div>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#141018', marginBottom: '10px' }}>Net revenue per statement period</div>
+                <div style={{ display: 'flex', alignItems: 'flex-end', gap: '7px', height: '120px' }}>
+                  {[79, 76, 67, 94, 83, 93, 82, 63, 71].map((h, i) => (
+                    <div key={i} style={{ flex: 1, height: `${h}%`, background: '#6a24e0', borderRadius: '5px 5px 0 0' }} />
+                  ))}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px', fontSize: '10px', color: '#a4a3ae' }}>
+                  <span>2026-01</span><span>2026-05</span><span>2026-09</span>
+                </div>
+                <p style={{ fontSize: '11px', color: '#a4a3ae', marginTop: '12px' }}>Sample data — for illustration.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* HOW IT WORKS */}
         <section id="how-it-works" className="py-24 px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="max-w-5xl mx-auto">
