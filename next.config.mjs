@@ -13,6 +13,16 @@ const nextConfig = {
   images: {
     remotePatterns: imageHosts,
   },
+  async redirects() {
+    // Short public URLs (used e.g. by partner referral links) -> actual routes under /musicraft.
+    // Query strings (e.g. ?ref=CODE) are preserved automatically.
+    const pages = ['pricing', 'how-it-works', 'artists', 'addons', 'apply', 'contact', 'support', 'terms', 'privacy'];
+    return [
+      ...pages.map((p) => ({ source: `/${p}`, destination: `/musicraft/${p}`, permanent: false })),
+      { source: '/partners', destination: 'https://partners.musicraft.eu', permanent: false },
+      { source: '/musicraft/partners', destination: 'https://partners.musicraft.eu', permanent: false },
+    ];
+  },
   async headers() {
     return [
       {
