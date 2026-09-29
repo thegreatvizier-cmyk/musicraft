@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getStoredRef, normalizeRef } from '@/lib/partnerRef';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import MusicraftNav from '../components/MusicraftNav';
@@ -13,7 +14,7 @@ const COUNTRIES = [
   'Hungary', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland', 'Israel', 'Italy',
   'Jamaica', 'Japan', 'Jordan', 'Kenya', 'South Korea', 'Lebanon', 'Malaysia', 'Mexico',
   'Morocco', 'Netherlands', 'New Zealand', 'Nigeria', 'Norway', 'Pakistan', 'Peru', 'Philippines',
-  'Poland', 'Portugal', 'Romania', 'Russia', 'Saudi Arabia', 'Senegal', 'Serbia', 'Singapore',
+  'Poland', 'Portugal', 'Romania', 'Saudi Arabia', 'Senegal', 'Serbia', 'Singapore',
   'South Africa', 'Spain', 'Sweden', 'Switzerland', 'Tanzania', 'Thailand', 'Tunisia', 'Turkey',
   'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom', 'United States', 'Uruguay',
   'Venezuela', 'Vietnam', 'Zimbabwe',
@@ -42,6 +43,7 @@ interface FormData {
   previousDistributor: string;
   contactEmail: string;
   description: string;
+  partnerCode: string;
 }
 
 export default function ApplyPage() {
@@ -59,7 +61,13 @@ export default function ApplyPage() {
     previousDistributor: '',
     contactEmail: '',
     description: '',
+    partnerCode: '',
   });
+
+  useEffect(() => {
+    const code = getStoredRef();
+    if (code) setForm(prev => (prev.partnerCode ? prev : { ...prev, partnerCode: code }));
+  }, []);
 
   const toggleGenre = (genre: string) => {
     setForm(prev => {
@@ -92,6 +100,7 @@ export default function ApplyPage() {
           catalogSize: form.catalogSize,
           previousDistributor: form.previousDistributor,
           description: form.description,
+          partnerCode: normalizeRef(form.partnerCode) ?? '',
         }),
       });
 
@@ -269,6 +278,20 @@ export default function ApplyPage() {
                     className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
                     style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: '#E8E8F0' }}
                   />
+                </div>
+
+                {/* Partner Code */}
+                <div>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: '#E8E8F0' }}>Partner Code <span className="text-xs font-normal" style={{ color: 'rgba(232,232,240,0.4)' }}>(optional)</span></label>
+                  <input
+                    type="text"
+                    placeholder="e.g. STUDIOX"
+                    value={form.partnerCode}
+                    onChange={e => setForm({ ...form, partnerCode: e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12) })}
+                    className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all"
+                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: '#E8E8F0', letterSpacing: '0.05em' }}
+                  />
+                  <p className="text-xs mt-2" style={{ color: 'rgba(232,232,240,0.5)' }}>Referred by a Musicraft partner? Your code gives you 20% off your first 3 months on Pro.</p>
                 </div>
 
                 {/* Contact Email */}

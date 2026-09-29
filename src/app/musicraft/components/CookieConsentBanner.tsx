@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { promoteRefToCookie } from '@/lib/partnerRef';
 
 const CONSENT_KEY = 'musicraft_cookie_consent';
 
@@ -17,6 +18,7 @@ export default function CookieConsentBanner() {
 
   const handleAccept = () => {
     localStorage.setItem(CONSENT_KEY, 'accepted');
+    promoteRefToCookie();
     setVisible(false);
   };
 

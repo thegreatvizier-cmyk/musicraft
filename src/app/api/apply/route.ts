@@ -22,7 +22,12 @@ export async function POST(req: NextRequest) {
       catalogSize,
       previousDistributor,
       description,
+      partnerCode: rawPartnerCode,
     } = body;
+
+    const partnerCode = /^[A-Z0-9]{4,12}$/.test(String(rawPartnerCode ?? '').trim().toUpperCase())
+      ? String(rawPartnerCode).trim().toUpperCase()
+      : '';
 
     if (!artistName || !contactEmail) {
       return NextResponse.json({ error: 'artistName and email are required' }, { status: 400 });
@@ -43,13 +48,14 @@ export async function POST(req: NextRequest) {
         <tr><td><strong>Apple Music URL</strong></td><td>${esc(appleMusicUrl) || '—'}</td></tr>
         <tr><td><strong>YouTube URL</strong></td><td>${esc(youtubeUrl) || '—'}</td></tr>
         <tr><td><strong>Description</strong></td><td>${esc(description) || '—'}</td></tr>
+        <tr><td><strong>Partner Code</strong></td><td>${esc(partnerCode) || '—'}</td></tr>
       </table>
     `;
 
     const { error } = await resend.emails.send({
       from: 'MUSICRAFT Applications <noreply@musicraft.eu>',
       to: ['info@musicraft.eu'],
-      subject: `New Application: ${artistName}`,
+      subject: partnerCode ? `New Application: ${artistName} [partner ${partnerCode}]` : `New Application: ${artistName}`,
       html,
       reply_to: contactEmail,
     });
@@ -80,6 +86,7 @@ export async function POST(req: NextRequest) {
             appleMusicUrl,
             youtubeUrl,
             description,
+            partnerCode,
           }),
         }).catch((err) => console.error('Triage webhook failed:', err))
       );
