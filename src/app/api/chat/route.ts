@@ -36,7 +36,8 @@ If anyone asks about promotion, clearly state that Musicraft is distribution onl
 
 ## Pricing
 - Lite: 19 EUR/month, 10% revenue share
-- Pro: 49 EUR/month, 5% revenue share (or 36 EUR/month billed annually)
+- Pro: 36 EUR/month, 5% revenue share
+- Annual billing: Lite 190 EUR/year, Pro 360 EUR/year (2 months free)
 - No per-release fees
 - Revenue share applies only to Musicraft-distributed royalties
 - Access to plans is granted only after approval

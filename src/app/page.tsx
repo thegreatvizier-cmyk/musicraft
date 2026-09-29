@@ -463,7 +463,7 @@ export default function MusicraftHome() {
                   <h3 className="text-2xl font-bold mb-1" style={{ color: '#E8E8F0' }}>Pro</h3>
                   <p className="text-sm mb-5" style={{ color: 'rgba(232,232,240,0.5)' }}>For artists releasing regularly or managing more complex catalogues.</p>
                   <div className="flex items-baseline gap-2 mb-1">
-                    <span className="text-4xl font-bold" style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>€49</span>
+                    <span className="text-4xl font-bold" style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>€36</span>
                     <span className="text-sm" style={{ color: 'rgba(232,232,240,0.5)' }}>/ month</span>
                   </div>
                   <div className="flex items-baseline gap-2">

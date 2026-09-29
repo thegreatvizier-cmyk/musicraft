@@ -83,7 +83,7 @@ export default function PricingPage() {
               >
                 Annual
                 <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: isAnnual ? 'rgba(255,255,255,0.2)' : 'rgba(124,58,237,0.3)', color: isAnnual ? 'white' : '#A78BFA' }}>
-                  Save 20%
+                  2 months free
                 </span>
               </button>
             </div>
