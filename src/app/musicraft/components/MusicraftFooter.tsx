@@ -27,13 +27,13 @@ export default function MusicraftFooter() {
             </div>
             <div>
               <div className="text-xs font-semibold mb-4" style={{ color: 'rgba(232,232,240,0.3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Company</div>
-              {[['Support', '/musicraft/support'], ['Contact', '/musicraft/contact']]?.map(([l, href]) => (
+              {[['Support', '/musicraft/support'], ['Contact', '/musicraft/contact'], ['Partner Program', 'https://partners.musicraft.eu']]?.map(([l, href]) => (
                 <Link key={l} href={href} className="block text-sm mb-2 transition-colors" style={{ color: 'rgba(232,232,240,0.5)' }}>{l}</Link>
               ))}
             </div>
             <div>
               <div className="text-xs font-semibold mb-4" style={{ color: 'rgba(232,232,240,0.3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Legal</div>
-              {[['Terms of Service', '/musicraft/terms'], ['Privacy Policy', '/musicraft/privacy']]?.map(([l, href]) => (
+              {[['Terms of Service', '/musicraft/terms'], ['Privacy Policy', '/musicraft/privacy'], ['Partner Terms', 'https://partners.musicraft.eu/terms']]?.map(([l, href]) => (
                 <Link key={l} href={href} className="block text-sm mb-2 transition-colors" style={{ color: 'rgba(232,232,240,0.5)' }}>{l}</Link>
               ))}
             </div>
