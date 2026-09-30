@@ -1,6 +1,41 @@
 import { Resend } from 'resend';
 import { waitUntil } from '@vercel/functions';
 import { NextRequest, NextResponse } from 'next/server';
+import crypto from 'crypto';
+
+export const runtime = 'nodejs';
+
+const REFERRAL_WEBHOOK_URL =
+  process.env.REFERRAL_WEBHOOK_URL || 'https://partners.musicraft.eu/api/partners/referrals';
+
+// Report a partner referral to the Partner Program (partners.musicraft.eu).
+// Signed with HMAC-SHA256 of the raw body using REFERRAL_WEBHOOK_SECRET.
+async function reportReferral(code: string, client: { name: string; email: string; country: string }) {
+  const secret = process.env.REFERRAL_WEBHOOK_SECRET;
+  if (!secret) {
+    console.error('[referral] REFERRAL_WEBHOOK_SECRET is not set – referral not reported:', code);
+    return;
+  }
+  const rawBody = JSON.stringify({
+    submission_id: crypto.randomUUID(),
+    submitted_at: new Date().toISOString(),
+    code,
+    client,
+  });
+  const signature = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
+  try {
+    const res = await fetch(REFERRAL_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Musicraft-Signature': signature },
+      body: rawBody,
+    });
+    const text = await res.text();
+    if (!res.ok) console.error('[referral] webhook failed', res.status, text);
+    else console.log('[referral] webhook', res.status, text);
+  } catch (err) {
+    console.error('[referral] webhook error', err);
+  }
+}
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -62,6 +97,17 @@ export async function POST(req: NextRequest) {
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    // Partner referral – runs after the response, never blocks the applicant.
+    if (partnerCode) {
+      waitUntil(
+        reportReferral(partnerCode, {
+          name: String(artistName),
+          email: String(contactEmail).trim(),
+          country: String(country ?? ''),
+        })
+      );
     }
 
     // Screening agent — runs in the background, never blocks the applicant.
