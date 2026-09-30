@@ -5,42 +5,63 @@ import crypto from 'crypto';
 
 export const runtime = 'nodejs';
 
-const REFERRAL_WEBHOOK_URL =
-  process.env.REFERRAL_WEBHOOK_URL || 'https://partners.musicraft.eu/api/partners/referrals';
-
-// Report a partner referral to the Partner Program (partners.musicraft.eu).
-// Signed with HMAC-SHA256 of the raw body using REFERRAL_WEBHOOK_SECRET.
-async function reportReferral(code: string, client: { name: string; email: string; country: string }) {
-  const secret = process.env.REFERRAL_WEBHOOK_SECRET;
-  if (!secret) {
-    console.error('[referral] REFERRAL_WEBHOOK_SECRET is not set – referral not reported:', code);
-    return;
-  }
-  const rawBody = JSON.stringify({
-    submission_id: crypto.randomUUID(),
-    submitted_at: new Date().toISOString(),
-    code,
-    client,
-  });
-  const signature = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
-  try {
-    const res = await fetch(REFERRAL_WEBHOOK_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Musicraft-Signature': signature },
-      body: rawBody,
-    });
-    const text = await res.text();
-    if (!res.ok) console.error('[referral] webhook failed', res.status, text);
-    else console.log('[referral] webhook', res.status, text);
-  } catch (err) {
-    console.error('[referral] webhook error', err);
-  }
-}
-
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const esc = (v: unknown) =>
   String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+// Partner Program referrals are written straight to the Partner Program database
+// (Supabase) through the pp_register_referral() function. The call uses the public
+// (publishable) key and is only accepted with the shared secret REFERRAL_WEBHOOK_SECRET.
+const PP_SUPABASE_URL = process.env.PP_SUPABASE_URL;
+const PP_SUPABASE_PUBLISHABLE_KEY = process.env.PP_SUPABASE_PUBLISHABLE_KEY;
+const PARTNER_PORTAL_URL = 'https://partners.musicraft.eu/portal';
+
+async function reportReferral(code: string, client: { name: string; email: string; country: string }) {
+  const secret = process.env.REFERRAL_WEBHOOK_SECRET;
+  if (!secret || !PP_SUPABASE_URL || !PP_SUPABASE_PUBLISHABLE_KEY) {
+    console.error('[referral] missing env (REFERRAL_WEBHOOK_SECRET / PP_SUPABASE_URL / PP_SUPABASE_PUBLISHABLE_KEY) – not reported:', code);
+    return;
+  }
+  try {
+    const res = await fetch(`${PP_SUPABASE_URL}/rest/v1/rpc/pp_register_referral`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: PP_SUPABASE_PUBLISHABLE_KEY },
+      body: JSON.stringify({
+        p_secret: secret,
+        p_submission_id: crypto.randomUUID(),
+        p_code: code,
+        p_name: client.name,
+        p_email: client.email,
+        p_country: client.country,
+      }),
+    });
+    const text = await res.text();
+    if (!res.ok) {
+      console.error('[referral] rpc failed', res.status, text.slice(0, 500));
+      return;
+    }
+    const result = JSON.parse(text);
+    console.log('[referral]', code, result.status, result.referral_status ?? '');
+
+    // Notify the partner about a new referral (only for normal, non-rejected referrals)
+    if (result.status === 'created' && result.referral_status === 'applied' && result.partner_email) {
+      const { error } = await resend.emails.send({
+        from: 'Musicraft Partners <partners@musicraft.eu>',
+        to: [result.partner_email],
+        subject: `New referral: ${result.masked_name} applied`,
+        html: `<p>Hi ${esc(String(result.partner_name ?? '').split(' ')[0])},</p>
+<p>${esc(result.masked_name)} has just applied to Musicraft with your partner code <strong>${esc(code)}</strong>.</p>
+<p>We review every application personally. You'll get another email once the client is accepted.</p>
+<p><a href="${PARTNER_PORTAL_URL}/referrals">View your referrals in the partner portal</a></p>
+<p>Musicraft Partner Program</p>`,
+      });
+      if (error) console.error('[referral] partner email failed', error);
+    }
+  } catch (err) {
+    console.error('[referral] error', err);
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
