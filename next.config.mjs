@@ -21,6 +21,17 @@ const nextConfig = {
       ...pages.map((p) => ({ source: `/${p}`, destination: `/musicraft/${p}`, permanent: false })),
       { source: '/partners', destination: 'https://partners.musicraft.eu', permanent: false },
       { source: '/musicraft/partners', destination: 'https://partners.musicraft.eu', permanent: false },
+
+      // Legacy URLs from the previous site — still indexed by search engines.
+      // Specific paths first, catch-all last.
+      { source: '/en/plans', destination: '/musicraft/pricing', permanent: true },
+      { source: '/en/service', destination: '/musicraft/how-it-works', permanent: true },
+      { source: '/en/services', destination: '/musicraft/how-it-works', permanent: true },
+      { source: '/en/contact', destination: '/musicraft/contact', permanent: true },
+      { source: '/en/about', destination: '/musicraft/artists', permanent: true },
+      { source: '/en/order/:slug*', destination: '/musicraft/apply', permanent: true },
+      { source: '/en', destination: '/', permanent: true },
+      { source: '/en/:path*', destination: '/', permanent: true },
     ];
   },
   async headers() {
