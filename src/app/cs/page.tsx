@@ -283,7 +283,7 @@ export default function MusicraftHomeCs() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/musicraft/apply" className="px-8 py-4 rounded-xl text-base font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)', boxShadow: '0 0 40px rgba(124,58,237,0.4)' }}>
-                Podat přihlášku
+                Chci distribuci
               </Link>
               <a href="#how-it-works" className="px-8 py-4 rounded-xl text-base font-medium transition-all hover:scale-105" style={{ color: 'rgba(232,232,240,0.8)', border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.04)' }}>
                 Jak to funguje
@@ -530,7 +530,7 @@ export default function MusicraftHomeCs() {
                   ))}
                 </ul>
                 <Link href="/musicraft/apply" className="block text-center py-3 rounded-xl text-sm font-semibold transition-all hover:scale-105" style={{ background: 'rgba(255,255,255,0.08)', color: '#E8E8F0', border: '1px solid rgba(255,255,255,0.12)' }}>
-                  Podat přihlášku
+                  Chci distribuci
                 </Link>
               </div>
 
@@ -556,7 +556,7 @@ export default function MusicraftHomeCs() {
                   ))}
                 </ul>
                 <Link href="/musicraft/apply" className="block text-center py-3 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105" style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)' }}>
-                  Podat přihlášku
+                  Chci distribuci
                 </Link>
               </div>
             </div>
@@ -760,14 +760,14 @@ export default function MusicraftHomeCs() {
         {/* APPLY CTA */}
         <section className="py-24 px-6" style={{ background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="max-w-xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-5" style={{ color: '#E8E8F0', letterSpacing: '-0.02em' }}>Podat přihlášku</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-5" style={{ color: '#E8E8F0', letterSpacing: '-0.02em' }}>Pojďme do toho</h2>
             <p className="text-base leading-relaxed mb-10" style={{ color: 'rgba(232,232,240,0.6)' }}>Pošlete nám krátkou přihlášku. Projdeme ji, ozveme se vám a domluvíme další kroky.</p>
             <a
               href="/musicraft/apply"
               className="inline-block px-10 py-4 rounded-xl text-base font-semibold text-white transition-all hover:scale-105"
               style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)', boxShadow: '0 0 30px rgba(124,58,237,0.3)' }}
             >
-              Podat přihlášku
+              Chci distribuci
             </a>
           </div>
         </section>

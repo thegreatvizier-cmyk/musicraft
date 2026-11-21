@@ -15,7 +15,7 @@ const NAV = {
   },
   cs: {
     links: [['Ceník', '/cs#pricing'], ['Jak to funguje', '/cs#how-it-works'], ['Časté dotazy', '/cs#faq'], ['Podpora', '/musicraft/support']],
-    cta: 'Podat přihlášku',
+    cta: 'Chci distribuci',
     home: '/cs',
     switchLabel: 'EN',
     switchHref: '/',
