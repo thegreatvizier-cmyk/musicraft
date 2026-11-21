@@ -56,7 +56,7 @@ const FAQS = [
   {
     question: 'Can I distribute music videos as well?',
     answer:
-      'Yes. Musicraft supports distribution of official music videos to platforms such as VEVO, Apple Music, and TIDAL where applicable.',
+      'Yes. Musicraft distributes official music videos to Spotify, Apple Music, VEVO and TIDAL. On Spotify, the video is linked directly to the track you release with us.',
   },
   {
     question: 'How long does the application review take?',

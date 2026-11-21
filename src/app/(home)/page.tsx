@@ -72,7 +72,7 @@ const FAQ_ITEMS = [
   { q: 'What is the difference between Lite and Pro?', a: 'Lite is suited for occasional releases or smaller catalogues. Pro is designed for artists and labels releasing regularly, with priority handling and faster QC turnaround.' },
   { q: 'Is there a per-release fee?', a: 'No. Musicraft charges a monthly plan fee plus a revenue share on royalties generated through distributed releases. There are no per-release fees.' },
   { q: 'How long does distribution take?', a: 'QC turnaround is up to 5 business days on Lite and up to 2 business days on Pro. DSP processing times are controlled by each platform.' },
-  { q: 'Does Musicraft distribute music videos?', a: 'Yes. Musicraft supports distribution of official music videos to platforms such as VEVO, Apple Music and TIDAL where applicable.' },
+  { q: 'Does Musicraft distribute music videos?', a: 'Yes. Musicraft distributes official music videos to Spotify, Apple Music, VEVO and TIDAL. On Spotify, the video is linked directly to the track you release with us.' },
 ];
 
 export default function MusicraftHome() {

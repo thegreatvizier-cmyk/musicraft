@@ -101,7 +101,7 @@ const FAQ_ITEMS = [
   { q: 'Jak a kdy dostanu peníze?', a: 'Výnosy uvidíte v royalty portálu v uzavřených měsíčních výkazech. Vyplácíme od zůstatku 100 EUR. Nižší částka zůstává na vašem účtu a přechází do dalších období.' },
   { q: 'Jak získám Spotify for Artists?', a: 'Profil si nárokujete sami na artists.spotify.com. Stačí, aby na Spotify bylo alespoň jedno vaše vydání.' },
   { q: 'Můžu přejít od jiného distributora?', a: 'Ano. Při přechodu zachováme původní kódy ISRC, takže vaše přehrání a statistiky na platformách zůstanou.', link: { href: '/cs/blog/jak-prejit-k-jinemu-distributorovi', label: 'Jak přechod probíhá krok za krokem →' } },
-  { q: 'Distribuujete i videoklipy?', a: 'Ano. Oficiální videoklipy doručujeme na platformy jako VEVO, Apple Music a TIDAL.' },
+  { q: 'Distribuujete i videoklipy?', a: 'Ano. Oficiální videoklipy doručujeme na Spotify, Apple Music, VEVO a TIDAL. Na Spotify klip napojíme přímo ke skladbě, kterou u nás máte.', link: { href: '/cs/blog/videoklip-na-spotify-a-apple-music', label: 'Jak distribuce videoklipu probíhá →' } },
 ];
 
 const PRICES = {
