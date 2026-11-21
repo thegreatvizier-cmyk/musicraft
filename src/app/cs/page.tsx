@@ -68,6 +68,15 @@ const WHAT_WE_DO_CARDS = [
   { icon: '📂', title: 'Správa katalogu', desc: 'Postaráme se o vaše vydání i dlouho po datu vydání.' },
 ];
 
+const PAIN_POINTS = [
+  { icon: '⏳', problem: 'Na odpověď čekáte týdny.', solution: 'U nás odpoví člověk, česky, do 3 pracovních dnů. V Pro do druhého dne.' },
+  { icon: '🤖', problem: 'Píšete chatbotovi, který vám nerozumí.', solution: 'U nás víte, s kým mluvíte, a nemusíte nikomu dokola vysvětlovat, o co jde.' },
+  { icon: '🔀', problem: 'Vydání skončilo na profilu jiného umělce.', solution: 'Chybně přiřazené profily, zdvojené interprety nebo chybějící vydání řešíme přímo s platformami za vás.' },
+  { icon: '⛔', problem: 'Vydání vám platforma zamítla.', solution: 'Každé vydání před odesláním ručně zkontrolujeme, takže se k zamítnutí většinou vůbec nedostane.' },
+  { icon: '📉', problem: 'Nevíte, kolik jste vydělali a odkud.', solution: 'V royalty portálu vidíte výkazy po platformách a skladbách, ke stažení v PDF pro účetní.' },
+  { icon: '🧾', problem: 'Platíte v dolarech a fakturu nemáte.', solution: 'Fakturujeme v korunách, s DPH, jak to účetní potřebuje.' },
+];
+
 // TODO: nahradit skutečnými jmény po souhlasu klientů
 const CLIENT_NAMES = ['[Interpret 1]', '[Interpret 2]', '[Interpret 3]', '[Label 1]', '[Label 2]', '[Label 3]'];
 
@@ -269,7 +278,7 @@ export default function MusicraftHomeCs() {
             </h1>
 
             <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(232,232,240,0.6)', lineHeight: 1.7 }}>
-              Distribuce hudby a videoklipů s důrazem na kvalitu, správná metadata a dlouhodobou péči o katalog.
+              Dostaneme vaši hudbu na Spotify, Apple Music, YouTube i TikTok. Když se něco pokazí, napíšete nám česky a odpoví vám člověk, který váš katalog zná.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -299,6 +308,27 @@ export default function MusicraftHomeCs() {
                 <div key={dsp.name} className="flex flex-col items-center gap-2 p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
                   <div className="w-9 h-9 rounded-xl flex items-center justify-center text-lg" style={{ background: `${dsp.color}20`, color: dsp.color }}>{dsp.icon}</div>
                   <span className="text-xs font-medium text-center hidden sm:block" style={{ color: 'rgba(232,232,240,0.5)' }}>{dsp.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ZNÁTE TO? */}
+        <section className="py-24 px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-14 max-w-2xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: '#E8E8F0', letterSpacing: '-0.02em' }}>Znáte to?</h2>
+              <p className="text-base" style={{ color: 'rgba(232,232,240,0.75)', lineHeight: 1.7 }}>
+                Velcí samoobslužní distributoři jsou levní a rychlí, dokud všechno funguje. Problém nastane, když nefunguje.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {PAIN_POINTS.map((item) => (
+                <div key={item.problem} className="p-6 rounded-2xl flex flex-col gap-3" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center text-2xl" style={{ background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.2)' }}>{item.icon}</div>
+                  <h3 className="text-base font-bold" style={{ color: '#E8E8F0' }}>{item.problem}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: 'rgba(232,232,240,0.75)' }}>{item.solution}</p>
                 </div>
               ))}
             </div>
@@ -341,7 +371,7 @@ export default function MusicraftHomeCs() {
             </div>
 
             <p className="text-center text-sm" style={{ color: 'rgba(232,232,240,0.4)' }}>
-              Samoobslužných distributorů je na trhu spousta a mnozí z nich jsou dobří. Musicraft je postavený pro jiný způsob práce.
+              Pokud chcete skladbu jen nahrát a o nic dalšího se nestarat, samoobslužní distributoři jsou dobrá volba. Musicraft je pro ty, kdo chtějí, aby se o jejich hudbu někdo staral.
             </p>
           </div>
         </section>
@@ -608,8 +638,8 @@ export default function MusicraftHomeCs() {
         <section className="py-24 px-6">
           <div className="max-w-[680px] mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-widest mb-10" style={{ color: '#E8E8F0', letterSpacing: '0.18em' }}>Pro umělce a labely</h2>
-            <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(232,232,240,0.6)' }}>Musicraft je kurátorovaná distribuční služba zaměřená na spolehlivé doručení, kvalitu metadat a dlouhodobou správu katalogu.</p>
-            <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(232,232,240,0.6)' }}>Spolupracujeme s nezávislými umělci a labely, pro které je distribuce spolehlivý základ, ne propagace.</p>
+            <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(232,232,240,0.6)' }}>Za Musicraftem stojí lidé, ne automat. Každé vydání projde rukama někoho, kdo ví, co dělá, a kdo vám odpoví, když něco nesedí.</p>
+            <p className="text-base leading-relaxed mb-6" style={{ color: 'rgba(232,232,240,0.6)' }}>Spolupracujeme s nezávislými umělci a labely, kterým záleží na tom, aby jejich hudba byla na platformách správně a zůstala tam dlouho.</p>
             <p className="text-base leading-relaxed" style={{ color: 'rgba(232,232,240,0.6)' }}>Každý katalog před přijetím posoudíme.</p>
           </div>
         </section>
@@ -731,7 +761,7 @@ export default function MusicraftHomeCs() {
         <section className="py-24 px-6" style={{ background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="max-w-xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-5" style={{ color: '#E8E8F0', letterSpacing: '-0.02em' }}>Podat přihlášku</h2>
-            <p className="text-base leading-relaxed mb-10" style={{ color: 'rgba(232,232,240,0.6)' }}>Musicraft je kurátorovaná distribuce. Každý katalog před přijetím posoudíme.</p>
+            <p className="text-base leading-relaxed mb-10" style={{ color: 'rgba(232,232,240,0.6)' }}>Pošlete nám krátkou přihlášku. Projdeme ji, ozveme se vám a domluvíme další kroky.</p>
             <a
               href="/musicraft/apply"
               className="inline-block px-10 py-4 rounded-xl text-base font-semibold text-white transition-all hover:scale-105"
