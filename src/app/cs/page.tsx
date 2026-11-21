@@ -100,7 +100,7 @@ const FAQ_ITEMS = [
   { q: 'Jaký je rozdíl mezi Musicraftem a OSA nebo Intergramem?', a: 'OSA spravuje autorská práva ke skladbám (hudba a text). Intergram zastupuje výkonné umělce a výrobce nahrávek u veřejného provozu a vysílání. My doručujeme vaše nahrávky na streamovací platformy a vyplácíme vám výnosy z nich. Tyto služby se doplňují.' },
   { q: 'Jak a kdy dostanu peníze?', a: 'Výnosy uvidíte v royalty portálu v uzavřených měsíčních výkazech. Vyplácíme od zůstatku 100 EUR. Nižší částka zůstává na vašem účtu a přechází do dalších období.' },
   { q: 'Jak získám Spotify for Artists?', a: 'Profil si nárokujete sami na artists.spotify.com. Stačí, aby na Spotify bylo alespoň jedno vaše vydání.' },
-  { q: 'Můžu přejít od jiného distributora?', a: 'Ano. Při přechodu zachováme původní kódy ISRC, takže vaše přehrání a statistiky na platformách zůstanou.' },
+  { q: 'Můžu přejít od jiného distributora?', a: 'Ano. Při přechodu zachováme původní kódy ISRC, takže vaše přehrání a statistiky na platformách zůstanou.', link: { href: '/cs/blog/jak-prejit-k-jinemu-distributorovi', label: 'Jak přechod probíhá krok za krokem →' } },
   { q: 'Distribuujete i videoklipy?', a: 'Ano. Oficiální videoklipy doručujeme na platformy jako VEVO, Apple Music a TIDAL.' },
 ];
 
@@ -758,6 +758,9 @@ export default function MusicraftHomeCs() {
                 <div key={item.q} className="p-6 rounded-2xl" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)' }}>
                   <h3 className="text-base font-bold mb-3" style={{ color: '#E8E8F0' }}>{item.q}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: 'rgba(232,232,240,0.6)' }}>{item.a}</p>
+                  {'link' in item && item.link && (
+                    <Link href={item.link.href} className="inline-block mt-3 text-sm font-semibold" style={{ color: '#A78BFA' }}>{item.link.label}</Link>
+                  )}
                 </div>
               ))}
             </div>

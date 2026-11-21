@@ -13,7 +13,7 @@ const FOOTER = {
   cs: {
     tagline: 'Kontrolovaná distribuce hudby pro umělce a labely, kterým záleží na kvalitě.',
     heads: ['Služba', 'Společnost', 'Právní informace', 'Kontakt'],
-    product: [['Ceník', '/cs#pricing'], ['Jak to funguje', '/cs#how-it-works'], ['Časté dotazy', '/cs#faq'], ['Pro umělce a labely', '/musicraft/artists']],
+    product: [['Ceník', '/cs#pricing'], ['Jak to funguje', '/cs#how-it-works'], ['Časté dotazy', '/cs#faq'], ['Blog', '/cs/blog']],
     company: [['Podpora', '/musicraft/support'], ['Kontakt', '/musicraft/contact'], ['Partner Program', 'https://partners.musicraft.eu']],
     legal: [['Obchodní podmínky', '/musicraft/terms'], ['Ochrana osobních údajů', '/musicraft/privacy'], ['Podmínky Partner Programu', 'https://partners.musicraft.eu/terms']],
     rights: 'Všechna práva vyhrazena.',

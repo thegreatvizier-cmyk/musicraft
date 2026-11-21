@@ -14,7 +14,7 @@ const NAV = {
     switchTitle: 'Česká verze',
   },
   cs: {
-    links: [['Ceník', '/cs#pricing'], ['Jak to funguje', '/cs#how-it-works'], ['Časté dotazy', '/cs#faq'], ['Podpora', '/musicraft/support']],
+    links: [['Ceník', '/cs#pricing'], ['Jak to funguje', '/cs#how-it-works'], ['Časté dotazy', '/cs#faq'], ['Blog', '/cs/blog'], ['Podpora', '/musicraft/support']],
     cta: 'Chci distribuci',
     home: '/cs',
     switchLabel: 'EN',
