@@ -1,4 +1,4 @@
-import type { CoverIcon } from '@/app/cs/blog/icons';
+import type { CoverIcon, CoverVariant } from '@/app/cs/blog/icons';
 
 // Blog posts. Each post is plain data rendered by src/app/cs/blog/[slug]/page.tsx.
 // Body blocks: h2 heading, paragraph, bullet list, numbered list, or a call to action.
@@ -27,6 +27,8 @@ export type Post = {
   updated?: string;
   readingMinutes: number;
   cover: CoverIcon;
+  // optional fixed cover look; by default covers rotate by publication order
+  coverVariant?: CoverVariant;
   body: Block[];
 };
 
@@ -226,4 +228,16 @@ export const POSTS: Post[] = [
 
 export function getPost(lang: Post['lang'], slug: string) {
   return POSTS.find((p) => p.lang === lang && p.slug === slug);
+}
+
+// Cover look of a post: its own coverVariant, or the next colour pair and motif in publication order,
+// so neighbouring posts never share a cover.
+export function coverVariantOf(post: Post): CoverVariant {
+  if (post.coverVariant) return post.coverVariant;
+  const ordered = POSTS.filter((p) => p.lang === post.lang)
+    .map((p, i) => ({ p, i }))
+    .sort((x, y) => x.p.date.localeCompare(y.p.date) || y.i - x.i)
+    .map((x) => x.p);
+  const n = ordered.indexOf(post);
+  return { palette: n % 5, motif: n % 4 };
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { POSTS, getPost } from '@/content/blog';
+import { POSTS, getPost, coverVariantOf } from '@/content/blog';
 import { BlogShell, Inline, formatDateCs } from '../BlogShell';
-import { coverSvg, iconSvg } from '../icons';
+import { coverSvg, iconSvg, variantGradient } from '../icons';
 
 type Params = { slug: string };
 
@@ -61,14 +61,14 @@ export default async function BlogPostCs({ params }: { params: Promise<Params> }
           className="mb-12 rounded-2xl overflow-hidden px-6 pt-6 pb-24 md:px-10 md:pt-8 md:pb-32"
           style={{
             border: '1px solid rgba(255,255,255,0.1)',
-            backgroundImage: `url("data:image/svg+xml;utf8,${encodeURIComponent(coverSvg(post.cover, 'hero', true, true))}")`,
+            backgroundImage: `url("data:image/svg+xml;utf8,${encodeURIComponent(coverSvg(post.cover, 'hero', true, true, coverVariantOf(post)))}")`,
             backgroundSize: 'cover',
             backgroundPosition: 'center bottom',
           }}
         >
           <div className="flex items-center justify-between gap-4 mb-10">
             <Link href="/cs/blog" className="text-sm font-semibold" style={{ color: '#E8E8F0' }}>← Všechny články</Link>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold text-white" style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)' }}>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold text-white" style={{ background: variantGradient(coverVariantOf(post)) }}>
               <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: iconSvg(post.cover, 18) }} style={{ display: 'inline-flex' }} />
               Blog
             </span>
