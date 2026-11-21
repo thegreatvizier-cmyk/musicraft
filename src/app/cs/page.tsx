@@ -77,6 +77,9 @@ const PAIN_POINTS = [
   { icon: '🧾', problem: 'Platíte v dolarech a fakturu nemáte.', solution: 'Fakturujeme v korunách, s DPH, jak to účetní potřebuje.' },
 ];
 
+// Reference a jména klientů: po získání souhlasů doplnit níže a přepnout na true
+const SHOW_REFERENCES = false;
+
 // TODO: nahradit skutečnými jmény po souhlasu klientů
 const CLIENT_NAMES = ['[Interpret 1]', '[Interpret 2]', '[Interpret 3]', '[Label 1]', '[Label 2]', '[Label 3]'];
 
@@ -291,6 +294,7 @@ export default function MusicraftHomeCs() {
             </div>
             <p className="text-sm mt-4" style={{ color: 'rgba(232,232,240,0.4)' }}>Každý katalog před přijetím posoudíme.</p>
 
+            {SHOW_REFERENCES && (
             <div className="mt-10">
               <p className="text-xs font-medium mb-3" style={{ color: 'rgba(232,232,240,0.45)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Distribuujeme pro</p>
               <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
@@ -299,6 +303,7 @@ export default function MusicraftHomeCs() {
                 ))}
               </div>
             </div>
+            )}
           </div>
 
           <div className="relative z-10 mt-20 w-full max-w-3xl mx-auto">
@@ -645,6 +650,7 @@ export default function MusicraftHomeCs() {
         </section>
 
         {/* REFERENCE */}
+        {SHOW_REFERENCES && (
         <section className="py-24 px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
@@ -663,6 +669,7 @@ export default function MusicraftHomeCs() {
             </div>
           </div>
         </section>
+        )}
 
         {/* PARTNER PROGRAM */}
         <section className="py-24 px-6" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
