@@ -264,7 +264,7 @@ export default function MusicraftHomeCs() {
             </div>
 
             <h1 className="font-bold leading-tight mb-6" style={{ fontSize: 'clamp(2.4rem, 6vw, 5rem)', letterSpacing: '-0.03em' }}>
-              <span style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #06B6D4 60%, #7C3AED 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', backgroundSize: '200% auto', animation: 'gradientShift 4s linear infinite' }}>Žádné sliby.</span>
+              <span style={{ background: 'linear-gradient(135deg, #7C3AED 0%, #06B6D4 60%, #7C3AED 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', backgroundSize: '200% auto', animation: 'gradientShift 4s linear infinite', display: 'inline-block', paddingTop: '0.18em', marginTop: '-0.18em' }}>Žádné sliby.</span>
               <span style={{ color: '#E8E8F0' }}> Jen pořádná distribuce.</span>
             </h1>
 
