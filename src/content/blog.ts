@@ -32,6 +32,105 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: 'skladba-na-profilu-jineho-umelce',
+    lang: 'cs',
+    title: 'Skladba se objevila na profilu jiného umělce: jak to opravit',
+    description:
+      'Vaše nové vydání skončilo na Spotify nebo Apple Music u jiného interpreta se stejným jménem? Proč se to stává, jak to opravit a jak tomu příště předejít.',
+    date: '2026-11-21',
+    readingMinutes: 5,
+    cover: 'profile',
+    body: [
+      {
+        type: 'p',
+        text:
+          'Vydáte novou skladbu a na Spotify ji najdete u úplně jiného interpreta se stejným jménem. Nebo naopak ve vašem profilu přibude cizí album. Patří to k nejčastějším problémům v distribuci a dá se to opravit. Ukážeme, proč to vzniká, jak to vyřešit a jak tomu příště předejít.',
+      },
+      { type: 'h2', text: 'Proč se to stává' },
+      {
+        type: 'p',
+        text:
+          'Platformy přiřazují vydání k profilům automaticky. Pokud vydání nenese **ID konkrétního profilu**, platforma hledá shodu jen podle jména interpreta. A pokud už existuje umělec se stejným nebo podobným jménem, vydání skončí u něj.',
+      },
+      {
+        type: 'flow',
+        nodes: [
+          { label: 'Vaše vydání', sub: 'jméno interpreta v metadatech' },
+          { label: 'Platforma hledá profil', sub: 'podle ID, nebo jen podle jména' },
+          { label: 'Profil se stejným jménem', sub: 'vydání skončí u jmenovce' },
+        ],
+        link: 'bez ID profilu',
+        caption: 'Bez ID profilu rozhoduje jen jméno. A jmenovců je na platformách víc, než by člověk čekal.',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Stejné nebo podobné jméno.** Na Spotify jsou desítky interpretů se stejným jménem.',
+          '**Jméno pokaždé zapsané jinak.** Velká a malá písmena, diakritika, mezery nebo „&“ místo „a“ stačí, aby platforma profil nepoznala.',
+          '**Chybí ID profilu.** Distributor neměl odkaz na váš profil, takže platforma hádala.',
+          '**Spolupráce.** U skladeb s hostem (feat.) se může nesprávně přiřadit i profil hosta.',
+        ],
+      },
+      { type: 'h2', text: 'Jak to opravit na Spotify' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Připravte si tři odkazy', text: 'Na vydání, na nesprávný profil a na váš správný profil. Pokud profil zatím nemáte, napište, že potřebujete nový.' },
+          { title: 'Napište distributorovi', text: 'Distributor může opravu zadat přímo u Spotify se všemi podklady.' },
+          { title: 'Nebo to nahlaste sami', text: 'V Spotify for Artists vyplňte formulář pro nesoulad obsahu (content mismatch). Potřebujete k tomu přístup k profilu.' },
+          { title: 'Počkejte na potvrzení', text: 'Spotify uvádí, že opravu obvykle zvládne během několika dní, a pošle vám e-mail.' },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Nahlásit jde i chystané vydání',
+        text: 'Pokud vidíte vydání na špatném profilu ještě před jeho zveřejněním, nahlaste ho hned. Spotify přijímá hlášení i u vydání, která ještě nevyšla.',
+      },
+      { type: 'h2', text: 'Jak to opravit na Apple Music' },
+      {
+        type: 'p',
+        text:
+          'Na Apple Music se oprava dělá v metadatech vydání: u vydání se vymění Apple ID interpreta za správné, nebo se pro nového umělce založí nové. Tohle udělá distributor, napište mu proto se stejnými třemi odkazy. Pokud je potřeba oddělit dva umělce se stejným jménem, platforma může chtít doklad, že jde o jiného interpreta, třeba odkazy na vaše sociální sítě.',
+      },
+      { type: 'h2', text: 'Jak dlouho to trvá' },
+      {
+        type: 'table',
+        head: ['Situace', 'Kdo opravu zadá', 'Obvyklá doba'],
+        rows: [
+          ['Spotify', 'Vy přes Spotify for Artists, nebo distributor', 'Několik dní'],
+          ['Apple Music', 'Distributor', 'Dny až týdny'],
+          ['Oddělení dvou umělců se stejným jménem', 'Distributor', 'I několik týdnů'],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Vydání znovu nenahrávejte',
+        text: 'Stáhnout vydání a nahrát ho znovu problém většinou nevyřeší. Jen vznikne duplicita a můžete přijít o přehrání. Oprava přes distributora nebo formulář je rychlejší i bezpečnější.',
+      },
+      { type: 'h2', text: 'Jak tomu příště předejít' },
+      {
+        type: 'ul',
+        items: [
+          '**Pošlete distributorovi ID svých profilů.** Odkaz na profil na Spotify a Apple ID interpreta. S nimi platforma vydání přiřadí přesně a nemusí hádat podle jména.',
+          '**Zapisujte jméno vždy stejně.** Stejná velká písmena, diakritika i mezery u každého vydání.',
+          '**Prověřte jméno předem.** Než vydáte první skladbu, vyhledejte své jméno na Spotify a Apple Music. Pokud tam už je, zvažte, jak se odlišit.',
+          '**U prvního vydání si nechte čas.** Nový profil vzniká s prvním vydáním. Než naplánujete další, ověřte, že první skončilo na správném místě.',
+          '**U spoluprací pošlete ID všech interpretů**, nejen svoje.',
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Profily hlídáme za vás',
+        text:
+          'Při zakládání interpreta u nás zadáváme ID jeho profilů na platformách. A když se něco přece jen přiřadí špatně, opravu se všemi podklady vyřídíme s platformou za vás.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
     slug: 'jak-prejit-k-jinemu-distributorovi',
     lang: 'cs',
     title: 'Jak přejít k jinému distributorovi bez ztráty streamů',
