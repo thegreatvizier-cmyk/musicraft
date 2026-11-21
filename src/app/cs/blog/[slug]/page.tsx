@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { POSTS, getPost } from '@/content/blog';
 import { BlogShell, Inline, formatDateCs } from '../BlogShell';
+import { coverSvg, iconSvg } from '../icons';
 
 type Params = { slug: string };
 
@@ -56,14 +57,27 @@ export default async function BlogPostCs({ params }: { params: Promise<Params> }
     <BlogShell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <article className="max-w-3xl mx-auto">
-        <Link href="/cs/blog" className="text-sm font-semibold" style={{ color: '#A78BFA' }}>← Blog</Link>
-        <h1 className="font-bold mt-6 mb-4" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-0.02em', lineHeight: 1.15 }}>{post.title}</h1>
-        <p className="text-sm mb-10" style={{ color: 'rgba(232,232,240,0.7)' }}>
-          {formatDateCs(post.date)} · {post.readingMinutes} min čtení
-        </p>
-        <div className="mb-12 rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
-          <img src={`/cs/blog/${post.slug}/opengraph-image`} alt={post.title} width={1200} height={630} style={{ display: 'block', width: '100%', height: 'auto' }} />
-        </div>
+        <header
+          className="mb-12 rounded-2xl overflow-hidden px-6 pt-6 pb-24 md:px-10 md:pt-8 md:pb-32"
+          style={{
+            border: '1px solid rgba(255,255,255,0.1)',
+            backgroundImage: `url("data:image/svg+xml;utf8,${encodeURIComponent(coverSvg(post.cover, 'hero', true, true))}")`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center bottom',
+          }}
+        >
+          <div className="flex items-center justify-between gap-4 mb-10">
+            <Link href="/cs/blog" className="text-sm font-semibold" style={{ color: '#E8E8F0' }}>← Všechny články</Link>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold text-white" style={{ background: 'linear-gradient(135deg, #7C3AED, #06B6D4)' }}>
+              <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: iconSvg(post.cover, 18) }} style={{ display: 'inline-flex' }} />
+              Blog
+            </span>
+          </div>
+          <h1 className="font-bold mb-5" style={{ fontSize: 'clamp(2rem, 5vw, 3.25rem)', letterSpacing: '-0.02em', lineHeight: 1.12, color: '#FFFFFF' }}>{post.title}</h1>
+          <p className="text-sm font-medium" style={{ color: 'rgba(232,232,240,0.85)' }}>
+            {formatDateCs(post.date)} · {post.readingMinutes} min čtení
+          </p>
+        </header>
 
         {post.body.map((block, i) => {
           switch (block.type) {

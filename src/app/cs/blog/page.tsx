@@ -27,12 +27,12 @@ export default function BlogIndexCs() {
               className="block rounded-2xl overflow-hidden transition-all hover:scale-[1.01]"
               style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)' }}
             >
-              <img src={`/cs/blog/${post.slug}/opengraph-image`} alt="" width={1200} height={630} loading="lazy" style={{ display: 'block', width: '100%', height: 'auto' }} />
+              <img src={`/cs/blog/${post.slug}/opengraph-image`} alt={post.title} width={1200} height={630} loading="lazy" style={{ display: 'block', width: '100%', height: 'auto' }} />
               <div className="p-7">
               <p className="text-sm mb-2" style={{ color: 'rgba(232,232,240,0.7)' }}>
                 {formatDateCs(post.date)} · {post.readingMinutes} min čtení
               </p>
-              <h2 className="text-2xl font-bold mb-3" style={{ color: '#E8E8F0' }}>{post.title}</h2>
+              <h2 className="sr-only">{post.title}</h2>
               <p className="text-base" style={{ color: 'rgba(232,232,240,0.8)', lineHeight: 1.7 }}>{post.description}</p>
               </div>
             </Link>
