@@ -18,6 +18,13 @@ const nextConfig = {
     // Query strings (e.g. ?ref=CODE) are preserved automatically.
     const pages = ['pricing', 'how-it-works', 'artists', 'addons', 'apply', 'contact', 'support', 'terms', 'privacy'];
     return [
+      // Czech domain -> Czech version on the main domain (keeps one canonical site for search engines).
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: '(?:www\\.)?musicraft\\.cz' }],
+        destination: 'https://www.musicraft.eu/cs',
+        permanent: true,
+      },
       ...pages.map((p) => ({ source: `/${p}`, destination: `/musicraft/${p}`, permanent: false })),
       { source: '/partners', destination: 'https://partners.musicraft.eu', permanent: false },
       { source: '/musicraft/partners', destination: 'https://partners.musicraft.eu', permanent: false },
