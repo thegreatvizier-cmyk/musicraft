@@ -34,6 +34,84 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: 'vlastni-label-a-distributor',
+    lang: 'cs',
+    title: 'Vlastní label: co mu dává distributor a na co se ptát před podpisem',
+    description:
+      'Zakládáte label nebo vydáváte víc interpretů? Co pro label dělá distributor, jak začít a deset otázek, které si položit, než podepíšete distribuční smlouvu.',
+    date: '2026-11-21',
+    readingMinutes: 6,
+    cover: 'label',
+    body: [
+      {
+        type: 'p',
+        text:
+          'Jakmile vydáváte víc než jednoho interpreta, budujete katalog pod vlastní značkou nebo chcete mít vydávání pod kontrolou, dává smysl vlastní label. Label nepotřebuje lisovnu ani kancelář. Potřebuje ale distributora, který zvládne víc než jen nahrát skladbu na Spotify.',
+      },
+      { type: 'h2', text: 'Co distributor labelu dává' },
+      {
+        type: 'table',
+        head: ['Oblast', 'Co by měl distributor zajistit'],
+        rows: [
+          ['Doručení', 'Vydání všech interpretů na hudební i video platformy, pod jménem vašeho labelu.'],
+          ['Kódy', 'Přidělení ISRC a UPC, nebo převzetí vašich vlastních.'],
+          ['Kontrola', 'Kontrolu metadat, obalů a zvuku dřív, než vydání vrátí platforma.'],
+          ['Výkazy', 'Royalty výkazy po interpretech a skladbách, abyste mohli spravedlivě vyplácet podíly.'],
+          ['Profily', 'Správné přiřazení k profilům interpretů a řešení chyb s platformami.'],
+          ['Katalog', 'Opravy, stažení a přesuny vydání i roky po vydání.'],
+        ],
+      },
+      { type: 'h2', text: 'Jak začít' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Zvolte a prověřte název', text: 'Vyhledejte ho na Spotify, Apple Music a v obchodním rejstříku, aby se nepletl s jiným labelem.' },
+          { title: 'Nastavte údaje o právech', text: 'U každého vydání se uvádí ℗ (práva k nahrávce) a © (práva k obalu a vydání) s rokem a názvem labelu.' },
+          { title: 'Uzavřete smlouvy s interprety', text: 'Písemně: kdo vlastní nahrávky, jak se dělí výnosy a co se stane, když spolupráce skončí.' },
+          { title: 'Vyberte distributora', text: 'Podle otázek níže. Pro label je důležitější podpora a výkazy než nejnižší cena.' },
+          { title: 'Převeďte katalog', text: 'Pokud už vydání někde máte, přesuňte je se zachováním kódů ISRC a UPC, ať nepřijdete o přehrání.' },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Smlouvy s interprety řešte předem',
+        text: 'Nejvíc sporů na malých labelech nevzniká kvůli penězům, ale kvůli tomu, že se nikdo písemně nedomluvil, komu nahrávky patří a jak se dělí výnosy. Vyřešte to dřív, než skladba vyjde.',
+      },
+      { type: 'h2', text: 'Na co se ptát před podpisem' },
+      {
+        type: 'table',
+        head: ['Otázka', 'Proč na ní záleží'],
+        rows: [
+          ['Komu patří práva k nahrávkám?', 'Musí zůstat vám. Distributor je jen doručuje.'],
+          ['Kolik stojí a jaký je podíl z výnosů?', 'Porovnávejte paušál i procenta dohromady, ne jen jedno z nich.'],
+          ['Jak dlouho smlouva platí a jak se vypovídá?', 'Dlouhá výpovědní lhůta vás může držet i ve chvíli, kdy chcete odejít.'],
+          ['Co se stane s katalogem, když odejdu?', 'Kódy ISRC a UPC musí zůstat vaše, aby šlo vydání převést bez ztráty přehrání.'],
+          ['Jak podrobné jsou výkazy?', 'Pro label potřebujete rozpad po interpretech a skladbách, ne jednu částku.'],
+          ['Jak často a od jaké částky se vyplácí?', 'Zjistěte frekvenci výplat a minimální zůstatek.'],
+          ['Na které platformy doručujete?', 'Včetně videa a sociálních sítí, kde dnes vzniká velká část výnosů.'],
+          ['Kdo mi odpoví, když něco nefunguje?', 'Konkrétní člověk a lhůta, ne formulář bez odpovědi.'],
+          ['Jak řešíte chyby na platformách?', 'Špatně přiřazené profily nebo zamítnutá vydání se u labelu stávají častěji.'],
+          ['Pomůžete s převodem katalogu?', 'Převod se zachováním kódů je práce. Dobrý distributor ji udělá za vás.'],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'musicraft',
+        title: 'Labely u nás',
+        text: 'Pro labely máme individuální podmínky podle velikosti katalogu. Label má v royalty portálu vlastní přístup s výkazy celého katalogu, interpreti vidí svoje. Převod katalogu i řešení s platformami děláme za vás.',
+      },
+      {
+        type: 'cta',
+        title: 'Distribuce pro váš label',
+        text:
+          'Distribuujeme pro nezávislé labely na všechny hlavní hudební i video platformy. Pošlete nám krátký popis labelu a katalogu a ozveme se s návrhem podmínek.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
     slug: 'proc-vydavat-14-dni-predem-a-pre-save',
     lang: 'cs',
     title: 'Proč vydávat 14 dní předem a jak na pre-save',
