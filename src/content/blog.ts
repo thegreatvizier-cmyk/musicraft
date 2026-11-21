@@ -34,6 +34,93 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: 'jak-pripravit-vydani',
+    lang: 'cs',
+    title: 'Jak připravit vydání: zvuk, obal a metadata v kostce',
+    description:
+      'Co musí splňovat zvukový soubor, obal a údaje o skladbě, aby vydání prošlo kontrolou platforem napoprvé. Přehledně, s nejčastějšími chybami.',
+    date: '2026-11-21',
+    readingMinutes: 6,
+    cover: 'checklist',
+    body: [
+      {
+        type: 'p',
+        text:
+          'Většina zdržení při vydávání nevzniká kvůli hudbě, ale kvůli drobnostem kolem ní: obal s odkazem na Instagram, host uvedený v názvu skladby, MP3 místo WAV. Platformy takové vydání vrátí a datum vydání se posouvá. Tady je přehled, co připravit, aby vydání prošlo napoprvé.',
+      },
+      { type: 'h2', text: 'Zvukový soubor' },
+      {
+        type: 'ul',
+        items: [
+          '**Formát WAV**, ne MP3. Ideálně 16 bitů a 44,1 kHz nebo vyšší kvalita, stereo.',
+          '**Finální master.** Žádné demoverze, žádné ticho navíc na začátku ani na konci.',
+          '**Každá skladba jako samostatný soubor**, pojmenovaný tak, aby bylo jasné, o kterou jde.',
+        ],
+      },
+      { type: 'h2', text: 'Obal' },
+      {
+        type: 'ul',
+        items: [
+          '**Čtverec v dostatečném rozlišení.** Aspoň 3000 × 3000 pixelů, Apple Music nově doporučuje 4000 × 4000. Formát JPG nebo PNG.',
+          '**Na obalu jen jméno interpreta a název vydání**, a ten musí přesně odpovídat názvu v metadatech.',
+          '**Ostrý obrázek**, ne rozmazaný, oříznutý nebo nakřivo, pokud to není záměr.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Co na obalu být nesmí',
+        text: 'Odkazy na web nebo sociální sítě, e-mail, QR kódy, loga obchodů a streamovacích služeb, ceny, data, čárové kódy, nápisy jako CD, vinyl nebo Deluxe a obrázky, ke kterým nemáte práva. Logo Parental Advisory jen u vydání označeného jako explicitní.',
+      },
+      { type: 'h2', text: 'Metadata' },
+      {
+        type: 'table',
+        head: ['Údaj', 'Na co myslet'],
+        rows: [
+          ['Jméno interpreta', 'Pokaždé zapsané stejně. Každý interpret ve vlastním poli, nikdy v názvu skladby.'],
+          ['Název skladby', 'Bez jména interpreta, bez emoji a bez reklamních textů jako „nový hit“.'],
+          ['Hosté (feat.)', 'Do pole interpretů s rolí host, ne do názvu skladby.'],
+          ['Verze', 'Remix, Live nebo Acoustic do pole pro verzi, aby se skladby nepletly s originálem.'],
+          ['Autoři hudby a textu', 'Celá jména. Hodí se i pro OSA a pro správné uvedení autorů na platformách.'],
+          ['Explicitní obsah', 'Označte příznakem. Platformy pak samy zobrazí značku E, do názvu ji nepište.'],
+          ['ISRC', 'Pokud skladba už někdy vyšla, použijte její původní kód. U nové ho přidělí distributor.'],
+          ['Datum vydání', 'Datum, kdy má vydání vyjít, ne kdy jste ho dokončili.'],
+        ],
+      },
+      { type: 'h2', text: 'Kdy vydání zadat' },
+      {
+        type: 'p',
+        text:
+          'Počítejte s kontrolou u distributora, doručením na platformy a časem na nabídku do playlistů. Spotify doporučuje mít vydání nahrané aspoň týden předem, aby šlo nabídnout redakci playlistů. U nás proto vydání zadávejte **aspoň 14 dní před datem vydání**.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Nabídněte skladbu do playlistů',
+        text: 'Jakmile je vydání doručené, můžete v Spotify for Artists jednu nevydanou skladbu nabídnout redakci playlistů. Čím dřív, tím víc času na to redakce má.',
+      },
+      { type: 'h2', text: 'Rychlá kontrola před odesláním' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Zvuk', text: 'WAV, finální master, každá skladba zvlášť.' },
+          { title: 'Obal', text: 'Čtverec aspoň 3000 × 3000 px, jen jméno a název, nic navíc.' },
+          { title: 'Jména', text: 'Interpret i hosté ve správných polích, zapsaní stejně jako u předchozích vydání.' },
+          { title: 'Autoři a příznaky', text: 'Autoři hudby a textu celým jménem, explicitní obsah označený.' },
+          { title: 'Termín', text: 'Datum vydání aspoň 14 dní dopředu.' },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Vydání za vás zkontrolujeme',
+        text:
+          'Každé vydání u nás před odesláním na platformy ručně projde kontrolou metadat, obalu, zvuku i autorských údajů. Když něco nesedí, ozveme se dřív, než to vrátí platforma.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
     slug: 'skladba-na-profilu-jineho-umelce',
     lang: 'cs',
     title: 'Skladba se objevila na profilu jiného umělce: jak to opravit',
