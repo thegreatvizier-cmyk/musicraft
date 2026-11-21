@@ -126,7 +126,7 @@ export const POSTS: Post[] = [
         type: 'cta',
         title: 'Profily hlídáme za vás',
         text:
-          'Při zakládání interpreta u nás zadáváme ID jeho profilů na platformách. A když se něco přece jen přiřadí špatně, opravu se všemi podklady vyřídíme s platformou za vás.',
+          'Při zakládání interpreta u nás zadáváme ID jeho profilů na Spotify, Apple Music a SoundCloudu, takže vydání míří rovnou na správné místo. A když se něco přece jen přiřadí špatně, opravu se všemi podklady vyřídíme s platformou za vás.',
         button: 'Chci distribuci',
         href: '/musicraft/apply',
       },
