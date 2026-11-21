@@ -30,7 +30,8 @@ export const PALETTES = [
   { a: '#2563EB', b: '#A855F7' }, // blue → violet
   { a: '#F59E0B', b: '#DB2777' }, // amber → magenta
 ] as const;
-export const MOTIFS = ['bars', 'vinyl', 'waves', 'dots'] as const;
+// The first four rotate automatically; 'film' is only used when a post sets it explicitly.
+export const MOTIFS = ['bars', 'vinyl', 'waves', 'dots', 'film'] as const;
 export type CoverVariant = { palette: number; motif: number };
 
 // Bar heights of the waveform motif (0–1).
@@ -59,6 +60,24 @@ function motifSvg(motif: (typeof MOTIFS)[number], fill: string, stroke: string, 
         return `<path d="${d}" fill="none" stroke="${stroke}" stroke-opacity="${0.55 - k * 0.08}" stroke-width="${3 - k * 0.3}" stroke-linecap="round"/>`;
       }).join('');
       return lines;
+    }
+    case 'film': {
+      // A slightly tilted film strip across the lower part: dark band, sprocket holes and frames.
+      const top = 492, h = 150, holeW = 18, holeH = 12;
+      let holes = '';
+      for (let x = -200; x < 1500; x += 36) {
+        holes += `<rect x="${x}" y="${top + 10}" width="${holeW}" height="${holeH}" rx="3" fill="#0A0A0F" fill-opacity="0.9"/>`;
+        holes += `<rect x="${x}" y="${top + h - 10 - holeH}" width="${holeW}" height="${holeH}" rx="3" fill="#0A0A0F" fill-opacity="0.9"/>`;
+      }
+      let frames = '';
+      for (let x = -180, k = 0; x < 1500; x += 190, k++) {
+        frames += `<rect x="${x}" y="${top + 32}" width="170" height="${h - 64}" rx="6" fill="${fill}" fill-opacity="${(0.55 + 0.35 * Math.abs(Math.sin(k * 1.3))).toFixed(2)}"/>`;
+      }
+      return `<g transform="rotate(-5 600 545)">
+<rect x="-200" y="${top}" width="1700" height="${h}" fill="#05050A" fill-opacity="0.75"/>
+<rect x="-200" y="${top}" width="1700" height="${h}" fill="none" stroke="${stroke}" stroke-opacity="0.6" stroke-width="2"/>
+${frames}${holes}
+</g>`;
     }
     case 'dots': {
       let out = '';

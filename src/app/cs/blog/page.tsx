@@ -20,14 +20,14 @@ export default function BlogIndexCs() {
           Praktické návody k distribuci hudby, jak je řešíme s našimi umělci a labely.
         </p>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {posts.map((post, idx) => (
             <Link
               key={post.slug}
               href={`/cs/blog/${post.slug}`}
               className="flex flex-col rounded-2xl overflow-hidden transition-all hover:scale-[1.02]"
               style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)' }}
             >
-              <img src={`/cs/blog/${post.slug}/opengraph-image`} alt={post.title} width={1200} height={630} loading="lazy" style={{ display: 'block', width: '100%', height: 'auto' }} />
+              <img src={`/cs/blog/${post.slug}/opengraph-image`} alt={post.title} width={1200} height={630} loading={idx < 3 ? 'eager' : 'lazy'} style={{ display: 'block', width: '100%', height: 'auto' }} />
               <div className="p-6 flex-1">
               <p className="text-sm mb-2" style={{ color: 'rgba(232,232,240,0.7)' }}>
                 {formatDateCs(post.date)} · {post.readingMinutes} min čtení
