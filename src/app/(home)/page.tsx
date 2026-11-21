@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import MusicraftNav from './musicraft/components/MusicraftNav';
-import MusicraftFooter from './musicraft/components/MusicraftFooter';
-import CookieConsentBanner from './musicraft/components/CookieConsentBanner';
+import MusicraftNav from '../musicraft/components/MusicraftNav';
+import MusicraftFooter from '../musicraft/components/MusicraftFooter';
+import CookieConsentBanner from '../musicraft/components/CookieConsentBanner';
 
 const DSP_LOGOS = [
   { name: 'Spotify', color: '#1DB954', icon: '♫' },
@@ -224,7 +224,7 @@ export default function MusicraftHome() {
 
       <div style={{ position: 'relative', zIndex: 1 }}>
         {/* NAV */}
-        <MusicraftNav />
+        <MusicraftNav lang="en" />
 
         {/* HERO */}
         <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 pb-16 overflow-hidden">

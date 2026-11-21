@@ -11,6 +11,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.musicraft.eu'),
   title: 'Musicraft — Curated Music & Video Distribution',
   description: 'Curated music and video distribution for artists and labels who value quality, metadata accuracy and long-term catalogue management.',
   icons: {
