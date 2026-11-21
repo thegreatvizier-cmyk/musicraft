@@ -34,6 +34,97 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: 'videoklip-na-vevo-a-apple-music',
+    lang: 'cs',
+    title: 'Jak dostat videoklip na VEVO a Apple Music',
+    description:
+      'Jak funguje distribuce videoklipu na VEVO, Apple Music a TIDAL: založení kanálu VEVO, technické požadavky na video a co připravit, aby klip vyšel bez zdržení.',
+    date: '2026-11-21',
+    readingMinutes: 5,
+    cover: 'video',
+    body: [
+      {
+        type: 'p',
+        text:
+          'Videoklip na YouTube nahrajete sami za pár minut. Na **VEVO**, **Apple Music** nebo **TIDAL** ale jen přes distributora. Vyplatí se to: na YouTube získáte oficiální kanál interpreta s označením VEVO, klip se dostane i do televizních aplikací a na Apple Music a TIDAL se zobrazí přímo u vaší hudby.',
+      },
+      { type: 'h2', text: 'Jak se klip na VEVO dostane' },
+      {
+        type: 'flow',
+        nodes: [
+          { label: 'Vy', sub: 'videoklip, náhled a údaje' },
+          { label: 'Distributor', sub: 'kontrola a doručení' },
+          { label: 'VEVO', sub: 'kanál na YouTube i TV aplikace' },
+        ],
+        link: 'video ISRC',
+        caption: 'Na VEVO nejde nahrát přímo. Klip doručuje distributor, který má s VEVO smlouvu.',
+      },
+      { type: 'h2', text: 'Kanál VEVO' },
+      {
+        type: 'p',
+        text:
+          'Klipy na VEVO vycházejí na kanálu interpreta s koncovkou VEVO, například JmenoInterpretaVEVO. Pokud kanál ještě nemáte, založí se při prvním doručení.',
+      },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Zvolte název kanálu', text: 'Jméno interpreta a VEVO, dohromady nejvýš 20 znaků, bez mezer, diakritiky a speciálních znaků.' },
+          { title: 'Distributor požádá o založení', text: 'Schválení obvykle trvá kolem pěti pracovních dnů.' },
+          { title: 'Klip se doručí na kanál', text: 'Další klipy už pak míří rovnou na existující kanál.' },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Kanál vyřešte před prvním doručením',
+        text: 'Po doručení už kanál u klipu nejde změnit. A klip doručený bez kanálu skončí jen v televizních aplikacích VEVO. Na YouTube ho pak dostanete jen tak, že se stáhne a doručí znovu.',
+      },
+      { type: 'h2', text: 'Technické požadavky VEVO' },
+      {
+        type: 'table',
+        head: ['Parametr', 'Požadavek (HD)'],
+        rows: [
+          ['Rozlišení', '1920 × 1080. Přijímá se i 4K a vertikální 1080 × 1920.'],
+          ['Formát', 'MOV nebo MP4, kodek H.264 nebo ProRes. Pro 4K jen ProRes.'],
+          ['Snímková frekvence', 'Původní, nejméně 23,98 snímku za sekundu, bez prokládání.'],
+          ['Datový tok', 'Ideálně 20 Mb/s, nejméně 7,5 Mb/s.'],
+          ['Zvuk', 'AAC stereo, 44,1 kHz, 320 kb/s.'],
+          ['Úvodní a závěrečné titulky', 'Nevkládejte. Žádné tabule s názvem, logy ani závěrečné karty.'],
+        ],
+      },
+      { type: 'h2', text: 'Co připravit kromě videa' },
+      {
+        type: 'ul',
+        items: [
+          '**Náhledový obrázek.** Ostrý snímek z klipu nebo samostatná grafika.',
+          '**ISRC videa.** Videoklip má vlastní kód, jiný než zvuková verze skladby. Pokud ho nemáte, přidělí ho distributor.',
+          '**Údaje o klipu.** Interpret a název přesně jako u skladby, režie, produkce a label.',
+          '**Datum a čas vydání.** Pokud čas nenastavíte, klip na VEVO vyjde o půlnoci kalifornského času, tedy u nás v 9:00 (v létě v 10:00).',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Vydejte klip ve stejný den jako skladbu',
+        text: 'Klip a skladba se navzájem podpoří. Zadejte proto video ve stejném termínu jako zvukové vydání a s dostatečným předstihem, aby byl čas na kontrolu i případné založení kanálu.',
+      },
+      { type: 'h2', text: 'Apple Music a TIDAL' },
+      {
+        type: 'p',
+        text:
+          'Na Apple Music a TIDAL se klip doručuje jako samostatné video vydání a zobrazí se u interpreta a u skladby. Technicky stačí stejný HD master jako pro VEVO, takže jedno video pokryje všechny platformy.',
+      },
+      {
+        type: 'cta',
+        title: 'Videoklipy distribuujeme na VEVO, Apple Music i TIDAL',
+        text:
+          'Zkontrolujeme technické parametry videa, vyřídíme založení kanálu VEVO a doručíme klip na všechny platformy najednou.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
     slug: 'jak-pripravit-vydani',
     lang: 'cs',
     title: 'Jak připravit vydání: zvuk, obal a metadata v kostce',
