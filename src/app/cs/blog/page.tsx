@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { POSTS } from '@/content/blog';
 import { BlogShell, formatDateCs } from './BlogShell';
+import BlogCover from './BlogCover';
 
 export const metadata: Metadata = {
   title: 'Blog — Musicraft',
@@ -24,14 +25,17 @@ export default function BlogIndexCs() {
             <Link
               key={post.slug}
               href={`/cs/blog/${post.slug}`}
-              className="block p-7 rounded-2xl transition-all hover:scale-[1.01]"
+              className="block rounded-2xl overflow-hidden transition-all hover:scale-[1.01]"
               style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)' }}
             >
+              <BlogCover icon={post.cover} id={`list-${post.slug}`} />
+              <div className="p-7">
               <p className="text-sm mb-2" style={{ color: 'rgba(232,232,240,0.7)' }}>
                 {formatDateCs(post.date)} · {post.readingMinutes} min čtení
               </p>
               <h2 className="text-2xl font-bold mb-3" style={{ color: '#E8E8F0' }}>{post.title}</h2>
               <p className="text-base" style={{ color: 'rgba(232,232,240,0.8)', lineHeight: 1.7 }}>{post.description}</p>
+              </div>
             </Link>
           ))}
         </div>

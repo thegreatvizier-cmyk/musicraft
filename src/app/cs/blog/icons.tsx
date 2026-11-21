@@ -1,0 +1,58 @@
+// Simple stroke icons (24×24 grid) used on blog covers. Drawn for Musicraft, no third-party marks.
+export type CoverIcon =
+  | 'switch'
+  | 'profile'
+  | 'rejected'
+  | 'checklist'
+  | 'calendar'
+  | 'coins'
+  | 'video'
+  | 'label'
+  | 'globe';
+
+const ICONS: Record<CoverIcon, string> = {
+  switch: '<path d="M4 8h14"/><path d="M14 4l4 4-4 4"/><path d="M20 16H6"/><path d="M10 12l-4 4 4 4"/>',
+  profile: '<circle cx="10" cy="8" r="4"/><path d="M3 21c0-4 3.5-6.5 7-6.5"/><path d="M14.5 18.5l2 2 4.5-4.5"/>',
+  rejected: '<path d="M12 3L2.5 20h19L12 3z"/><path d="M12 10v4.5"/><path d="M12 17.2v.3"/>',
+  checklist: '<path d="M10 6h10"/><path d="M10 12h10"/><path d="M10 18h10"/><path d="M3.5 6l1.5 1.5L7.5 5"/><path d="M3.5 12l1.5 1.5L7.5 11"/><path d="M3.5 18l1.5 1.5L7.5 17"/>',
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M8.5 15l2 2 4-4"/>',
+  coins: '<ellipse cx="9" cy="7" rx="6" ry="3"/><path d="M3 7v5c0 1.7 2.7 3 6 3s6-1.3 6-3V7"/><path d="M9 18c0 1.7 2.7 3 6 3s6-1.3 6-3v-5c0-1.7-2.7-3-6-3"/>',
+  video: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 9l5 3-5 3V9z"/>',
+  label: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3a9 9 0 0 1 9 9"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"/>',
+};
+
+// Bar heights of the waveform drawn along the bottom of every cover (0–1).
+const WAVE = [0.35, 0.55, 0.42, 0.7, 0.5, 0.82, 0.6, 0.38, 0.66, 0.9, 0.58, 0.44, 0.72, 0.52, 0.8, 0.62, 0.4, 0.68, 0.48, 0.76, 0.56, 0.36, 0.64, 0.46];
+
+// Abstract brand cover as an SVG string (1200×630): gradient glows, grid, waveform and a topic icon.
+// Used both on the page and for the social preview image, so they always match.
+export function coverSvg(icon: CoverIcon, id: string, fixedSize = false): string {
+  const g = (n: string) => `${n}-${id}`;
+  const barW = 30;
+  const gap = 18;
+  const total = WAVE.length * barW + (WAVE.length - 1) * gap;
+  const x0 = (1200 - total) / 2;
+  const bars = WAVE.map((h, i) => {
+    const height = 60 + h * 220;
+    return `<rect x="${x0 + i * (barW + gap)}" y="${630 - height}" width="${barW}" height="${height}" rx="${barW / 2}" fill="url(#${g('bar')})"/>`;
+  }).join('');
+  const sizeAttrs = fixedSize ? 'width="1200" height="630"' : 'style="display:block;width:100%;height:auto"';
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" ${sizeAttrs} aria-hidden="true">
+<defs>
+<radialGradient id="${g('glowA')}" cx="15%" cy="10%" r="70%"><stop offset="0%" stop-color="#7C3AED" stop-opacity="0.55"/><stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/></radialGradient>
+<radialGradient id="${g('glowB')}" cx="90%" cy="95%" r="65%"><stop offset="0%" stop-color="#06B6D4" stop-opacity="0.45"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0"/></radialGradient>
+<linearGradient id="${g('brand')}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#06B6D4"/></linearGradient>
+<linearGradient id="${g('bar')}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#A78BFA" stop-opacity="0.55"/><stop offset="100%" stop-color="#06B6D4" stop-opacity="0.05"/></linearGradient>
+<pattern id="${g('grid')}" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="1"/></pattern>
+</defs>
+<rect width="1200" height="630" fill="#0A0A0F"/>
+<rect width="1200" height="630" fill="url(#${g('grid')})"/>
+<rect width="1200" height="630" fill="url(#${g('glowA')})"/>
+<rect width="1200" height="630" fill="url(#${g('glowB')})"/>
+${bars}
+<rect x="480" y="155" width="240" height="240" rx="56" fill="url(#${g('brand')})"/>
+<rect x="484" y="159" width="232" height="232" rx="52" fill="#120F1F" fill-opacity="0.55"/>
+<g transform="translate(528 203) scale(6)" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[icon]}</g>
+</svg>`;
+}

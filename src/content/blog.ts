@@ -1,3 +1,5 @@
+import type { CoverIcon } from '@/app/cs/blog/icons';
+
 // Blog posts. Each post is plain data rendered by src/app/cs/blog/[slug]/page.tsx.
 // Body blocks: h2 heading, paragraph, bullet list, numbered list, or a call to action.
 // In paragraphs and list items, **text** is bold and [text](url) is a link.
@@ -7,6 +9,13 @@ export type Block =
   | { type: 'p'; text: string }
   | { type: 'ul'; items: string[] }
   | { type: 'ol'; items: string[] }
+  // numbered step cards
+  | { type: 'steps'; items: { title: string; text: string }[] }
+  // highlighted box: tip = helpful advice, warning = something that can go wrong
+  | { type: 'callout'; variant: 'tip' | 'warning'; title: string; text: string }
+  // simple left-to-right flow of boxes, with an optional label on the connection
+  | { type: 'flow'; nodes: { label: string; sub?: string }[]; link?: string; caption?: string }
+  | { type: 'table'; head: string[]; rows: string[][] }
   | { type: 'cta'; title: string; text: string; button: string; href: string };
 
 export type Post = {
@@ -17,6 +26,7 @@ export type Post = {
   date: string; // YYYY-MM-DD
   updated?: string;
   readingMinutes: number;
+  cover: CoverIcon;
   body: Block[];
 };
 
@@ -29,6 +39,7 @@ export const POSTS: Post[] = [
       'Přechod k jinému hudebnímu distributorovi neznamená začínat od nuly. Co si připravit, v jakém pořadí postupovat a na co si dát pozor, aby vám zůstala přehrání i místa v playlistech.',
     date: '2026-11-21',
     readingMinutes: 5,
+    cover: 'switch',
     body: [
       {
         type: 'p',
@@ -41,28 +52,45 @@ export const POSTS: Post[] = [
         text:
           'Streamovací platformy poznávají skladbu podle kódu **ISRC** a celé vydání (singl, EP, album) podle kódu **UPC**. Pokud nový distributor přidělí nové kódy, nebo se nové vydání liší názvem, délkou skladby či obalem, platforma ho s původním nepropojí. Vznikne duplicitní vydání a počty přehrání začínají znovu.',
       },
-      { type: 'h2', text: 'Co si připravit' },
       {
-        type: 'ul',
-        items: [
-          '**Kódy ISRC** ke každé skladbě a **UPC** ke každému vydání. Najdete je v účtu u současného distributora, v detailu vydání nebo v exportu katalogu.',
-          '**Původní datum vydání** u každého singlu, EP i alba.',
-          '**Přesné názvy** skladeb a interpretů tak, jak jsou na platformách, včetně označení verzí (například Radio Edit nebo feat.).',
-          '**Stejné zvukové soubory**, ideálně WAV, se stejnou délkou jako původně.',
-          '**Stejný obal** a stejný typ vydání.',
+        type: 'flow',
+        nodes: [
+          { label: 'Původní distributor', sub: 'vydání zůstává online' },
+          { label: 'Nový distributor', sub: 'doručí stejná data' },
+          { label: 'Streamovací platformy', sub: 'propojí obě vydání' },
+        ],
+        link: 'stejné ISRC a UPC',
+        caption: 'Platforma propojí nové vydání s původním jen tehdy, když nese stejné kódy a stejná data.',
+      },
+      { type: 'h2', text: 'Co musí zůstat stejné' },
+      {
+        type: 'table',
+        head: ['Údaj', 'Kde ho najdete'],
+        rows: [
+          ['Kód ISRC ke každé skladbě', 'V detailu vydání nebo v exportu katalogu u současného distributora'],
+          ['Kód UPC ke každému vydání', 'Tamtéž, u singlu, EP i alba'],
+          ['Původní datum vydání', 'V detailu vydání nebo přímo na platformě'],
+          ['Názvy skladeb a interpretů', 'Přesně jak jsou na platformách, včetně verzí (Radio Edit, feat.)'],
+          ['Zvukový soubor', 'Původní master, ideálně WAV, se stejnou délkou'],
+          ['Obal a typ vydání', 'Stejný obrázek, singl zůstává singlem a album albem'],
         ],
       },
       { type: 'h2', text: 'Postup krok za krokem' },
       {
-        type: 'ol',
+        type: 'steps',
         items: [
-          '**Zatím nic nestahujte.** Původní vydání nechte online, dokud je nový distributor nedoručí.',
-          '**Pošlete katalog novému distributorovi** s původními kódy ISRC a UPC a s původním datem vydání.',
-          '**Počkejte, až se nová vydání objeví na platformách.** Na Spotify můžete pár dní vidět stejné vydání dvakrát. To je v pořádku.',
-          '**Zkontrolujte, že se čísla propojila.** Počet přehrání u nového vydání by měl odpovídat původnímu.',
-          '**Teprve pak požádejte původního distributora o stažení** (takedown). Někde na to je tlačítko v účtu, jinde je potřeba napsat podpoře.',
-          '**Účet u původního distributora hned nerušte.** Platformy hlásí výnosy se zpožděním, zpravidla dvou až tří měsíců, takže výplaty za poslední měsíce dorazí ještě tam.',
+          { title: 'Zatím nic nestahujte', text: 'Původní vydání nechte online, dokud je nový distributor nedoručí.' },
+          { title: 'Pošlete katalog novému distributorovi', text: 'S původními kódy ISRC a UPC a s původním datem vydání.' },
+          { title: 'Počkejte, až se nová vydání objeví', text: 'Na Spotify můžete pár dní vidět stejné vydání dvakrát. To je v pořádku.' },
+          { title: 'Zkontrolujte, že se čísla propojila', text: 'Počet přehrání u nového vydání by měl odpovídat původnímu.' },
+          { title: 'Teprve pak požádejte o stažení', text: 'Původního distributora požádejte o takedown. Někde na to je tlačítko v účtu, jinde je potřeba napsat podpoře.' },
         ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Účet u původního distributora hned nerušte',
+        text: 'Platformy hlásí výnosy se zpožděním, zpravidla dvou až tří měsíců. Výplaty za poslední měsíce proto dorazí ještě k původnímu distributorovi.',
       },
       { type: 'h2', text: 'Na co si dát pozor' },
       {
@@ -70,9 +98,14 @@ export const POSTS: Post[] = [
         items: [
           '**Překlepy v kódech.** Stačí jeden prohozený ISRC a skladba se propojí špatně nebo vůbec. Kontrolujte kód po kódu.',
           '**Remastery a nové verze.** Pokud nahrávku upravíte, jde o novou verzi s novým ISRC a čísla se nepřenesou. Pro přechod použijte původní master.',
-          '**YouTube Content ID.** Pokud vaše nahrávky v Content ID spravoval původní distributor, nechte ho tam zrušit dřív, než je zaregistruje nový. Dva nároky na stejnou nahrávku vedou ke sporu a výnosy se mezitím pozastaví.',
           '**Spotify for Artists.** Přístup k profilu interpreta vám zůstane. Profil patří vám, ne distributorovi.',
         ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'YouTube Content ID',
+        text: 'Pokud vaše nahrávky v Content ID spravoval původní distributor, nechte ho tam zrušit dřív, než je zaregistruje nový. Dva nároky na stejnou nahrávku vedou ke sporu a výnosy se mezitím pozastaví.',
       },
       { type: 'h2', text: 'Jak dlouho přechod trvá' },
       {
