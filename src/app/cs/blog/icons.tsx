@@ -27,14 +27,14 @@ const WAVE = [0.35, 0.55, 0.42, 0.7, 0.5, 0.82, 0.6, 0.38, 0.66, 0.9, 0.58, 0.44
 
 // Abstract brand cover as an SVG string (1200×630): gradient glows, grid, waveform and a topic icon.
 // Used both on the page and for the social preview image, so they always match.
-export function coverSvg(icon: CoverIcon, id: string, fixedSize = false): string {
+export function coverSvg(icon: CoverIcon, id: string, fixedSize = false, background = false): string {
   const g = (n: string) => `${n}-${id}`;
   const barW = 30;
   const gap = 18;
   const total = WAVE.length * barW + (WAVE.length - 1) * gap;
   const x0 = (1200 - total) / 2;
   const bars = WAVE.map((h, i) => {
-    const height = 60 + h * 220;
+    const height = background ? 30 + h * 120 : 60 + h * 220;
     return `<rect x="${x0 + i * (barW + gap)}" y="${630 - height}" width="${barW}" height="${height}" rx="${barW / 2}" fill="url(#${g('bar')})"/>`;
   }).join('');
   const sizeAttrs = fixedSize ? 'width="1200" height="630"' : 'style="display:block;width:100%;height:auto"';
@@ -51,8 +51,13 @@ export function coverSvg(icon: CoverIcon, id: string, fixedSize = false): string
 <rect width="1200" height="630" fill="url(#${g('glowA')})"/>
 <rect width="1200" height="630" fill="url(#${g('glowB')})"/>
 ${bars}
-<rect x="480" y="155" width="240" height="240" rx="56" fill="url(#${g('brand')})"/>
+${background ? '' : `<rect x="480" y="155" width="240" height="240" rx="56" fill="url(#${g('brand')})"/>
 <rect x="484" y="159" width="232" height="232" rx="52" fill="#120F1F" fill-opacity="0.55"/>
-<g transform="translate(528 203) scale(6)" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[icon]}</g>
+<g transform="translate(528 203) scale(6)" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[icon]}</g>`}
 </svg>`;
+}
+
+// Small white icon as a standalone SVG string, for use beside text.
+export function iconSvg(icon: CoverIcon, size: number): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[icon]}</svg>`;
 }

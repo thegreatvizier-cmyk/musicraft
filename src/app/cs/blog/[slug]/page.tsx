@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { POSTS, getPost } from '@/content/blog';
 import { BlogShell, Inline, formatDateCs } from '../BlogShell';
-import BlogCover from '../BlogCover';
 
 type Params = { slug: string };
 
@@ -63,7 +62,7 @@ export default async function BlogPostCs({ params }: { params: Promise<Params> }
           {formatDateCs(post.date)} · {post.readingMinutes} min čtení
         </p>
         <div className="mb-12 rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
-          <BlogCover icon={post.cover} id={post.slug} />
+          <img src={`/cs/blog/${post.slug}/opengraph-image`} alt={post.title} width={1200} height={630} style={{ display: 'block', width: '100%', height: 'auto' }} />
         </div>
 
         {post.body.map((block, i) => {
