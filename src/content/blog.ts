@@ -34,6 +34,90 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: 'proc-vydavat-14-dni-predem-a-pre-save',
+    lang: 'cs',
+    title: 'Proč vydávat 14 dní předem a jak na pre-save',
+    description:
+      'Skladba je hotová a chcete ji venku hned? Co během dvou týdnů před vydáním získáte, co ztratíte spěchem a jak funguje pre-save na Spotify a Apple Music.',
+    date: '2026-11-21',
+    readingMinutes: 5,
+    cover: 'calendar',
+    body: [
+      {
+        type: 'p',
+        text:
+          'Nejčastější otázka, kterou dostáváme: „Může to vyjít už tento pátek?“ Většinou to jde. Jenže skladba vydaná narychlo přichází o věci, které nic nestojí a výrazně jí pomůžou: o šanci na playlisty, o místo ve Spotify Release Radaru vašich fanoušků a o čas na pre-save. Proto doporučujeme zadávat vydání **aspoň 14 dní předem**.',
+      },
+      { type: 'h2', text: 'Co se během dvou týdnů děje' },
+      {
+        type: 'table',
+        head: ['Kdy', 'Co se děje'],
+        rows: [
+          ['14 dní před vydáním', 'Zadáte vydání. Projde kontrolou metadat, obalu a zvuku.'],
+          ['Zhruba 10 dní před', 'Vydání je doručené na platformy a čeká na datum.'],
+          ['Nejpozději 7 dní před', 'Nabídnete skladbu redakci playlistů v Spotify for Artists. Tím se zároveň dostane do Release Radaru vašich fanoušků.'],
+          ['Týden před', 'Běží pre-save kampaň: odkaz v biu, příběhy, newsletter.'],
+          ['Den vydání', 'Skladba vyjde a fanouškům, kteří ji předem uložili, se sama objeví v knihovně.'],
+        ],
+      },
+      { type: 'h2', text: 'Co ztratíte, když spěcháte' },
+      {
+        type: 'ul',
+        items: [
+          '**Nabídku do playlistů.** Redakci Spotify můžete nabídnout jen skladbu, která ještě nevyšla, a redakce potřebuje čas.',
+          '**Release Radar první týden.** Spotify doporučuje nabídnout skladbu aspoň 7 dní před vydáním, aby se dostala do Release Radaru vašich fanoušků hned v týdnu vydání.',
+          '**Pre-save.** Bez předstihu není co sdílet a fanoušci se o vydání dozvědí až dodatečně.',
+          '**Čas na opravy.** Když kontrola najde chybu v obalu nebo údajích, na opravu nezbývá čas a termín se posune stejně.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'musicraft',
+        title: 'Spěcháte? Vydání i tak přijmeme',
+        text: 'Vydání s kratším předstihem než 14 dní u nás zadat jde, jen termín nemůžeme zaručit. V tarifu Pro ho vyřizujeme přednostně.',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Vydávejte v pátek',
+        text: 'Release Radar se na Spotify obnovuje každý pátek a v pátek vychází většina nové hudby. Vydání na pátek tak zapadne do toho, kdy posluchači novinky hledají.',
+      },
+      { type: 'h2', text: 'Jak funguje pre-save' },
+      {
+        type: 'p',
+        text:
+          'Pre-save znamená, že si fanoušek skladbu uloží ještě před vydáním. V den vydání ji pak najde ve své knihovně a dostane upozornění. Pro vás je to signál zájmu hned od první minuty. Existují tři cesty:',
+      },
+      {
+        type: 'table',
+        head: ['Způsob', 'Pro koho', 'Jak se nastavuje'],
+        rows: [
+          ['Spotify Countdown Page', 'Alba a EP, interpreti s aspoň 3 000 aktivními posluchači měsíčně', 'Sami v Spotify for Artists, jakmile je vydání doručené'],
+          ['Apple Music pre-add', 'Vydání doručená s předstihem', 'Zajišťuje distributor při doručení'],
+          ['Pre-save odkaz', 'Každé vydání včetně singlů', 'Jeden odkaz pro více platforem, sdílíte ho kdekoli'],
+        ],
+      },
+      { type: 'h2', text: 'Pre-save kampaň ve čtyřech krocích' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Zadejte vydání včas', text: 'Bez doručeného vydání pre-save nefunguje. Čtrnáct dní je bezpečná rezerva.' },
+          { title: 'Připravte odkaz', text: 'Jeden pre-save odkaz pro všechny platformy, s obalem a názvem skladby.' },
+          { title: 'Sdílejte ho', text: 'Do bia na Instagramu a TikToku, do příběhů, do newsletteru i do popisku posledního videa.' },
+          { title: 'Připomeňte se v den vydání', text: 'Fanouškům, kteří skladbu uložili, se objeví sama. Ostatním připomeňte, že je venku.' },
+        ],
+      },
+      {
+        type: 'cta',
+        title: 'Termín i pre-save pohlídáme',
+        text:
+          'Vydání zkontrolujeme a doručíme s předstihem, aby byl čas na nabídku do playlistů. Jako doplněk vám k vydání připravíme pre-save odkaz pro více platforem.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
     slug: 'videoklip-na-spotify-a-apple-music',
     lang: 'cs',
     title: 'Jak dostat videoklip na Spotify a Apple Music',
