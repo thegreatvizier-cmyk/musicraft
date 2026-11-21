@@ -12,7 +12,7 @@ export type Block =
   // numbered step cards
   | { type: 'steps'; items: { title: string; text: string }[] }
   // highlighted box: tip = helpful advice, warning = something that can go wrong
-  | { type: 'callout'; variant: 'tip' | 'warning'; title: string; text: string }
+  | { type: 'callout'; variant: 'tip' | 'warning' | 'musicraft'; title: string; text: string }
   // simple left-to-right flow of boxes, with an optional label on the connection
   | { type: 'flow'; nodes: { label: string; sub?: string }[]; link?: string; caption?: string }
   | { type: 'table'; head: string[]; rows: string[][] }
@@ -59,9 +59,15 @@ export const POSTS: Post[] = [
         items: [
           '**Video musí doručit stejný distributor jako skladbu.** Spotify ho napojuje přímo na zvukovou verzi, takže klip i audio musí jít jednou cestou.',
           '**Jen oficiální videoklipy.** Lyric videa, vizualizéry ani záznamy koncertů Spotify zatím nepřijímá.',
-          '**Funkce je stále v betě.** Videa vidí hlavně předplatitelé Premium a dostupnost se rozšiřuje postupně podle zemí.',
+          '**Spotify videa teprve rozšiřuje.** Zobrazují se hlavně předplatitelům Premium a dostupnost přibývá postupně podle zemí. Kdo klip doručí už teď, bude u toho od začátku.',
           '**Přímé nahrání v Spotify for Artists** zatím zkouší jen omezený okruh umělců. Hlavní cestou zůstává distributor.',
         ],
+      },
+      {
+        type: 'callout',
+        variant: 'musicraft',
+        title: 'U Musicraftu mají distribuci videa všichni umělci',
+        text: 'Nemusíte čekat, až se vám nabídne beta v Spotify for Artists. Každý umělec u nás může videoklip doručit na Spotify a zároveň na Apple Music, VEVO a TIDAL. Klip napojíme rovnou ke skladbě, kterou u nás máte.',
       },
       {
         type: 'callout',

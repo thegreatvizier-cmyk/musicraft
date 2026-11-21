@@ -112,12 +112,16 @@ export default async function BlogPostCs({ params }: { params: Promise<Params> }
                 </ol>
               );
             case 'callout': {
-              const tip = block.variant === 'tip';
+              const look = {
+                tip: { box: { background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.35)' }, icon: '💡', label: 'Tip', color: '#67E8F9' },
+                warning: { box: { background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.4)' }, icon: '⚠️', label: 'Pozor', color: '#FCD34D' },
+                musicraft: { box: { background: 'linear-gradient(135deg, rgba(124,58,237,0.22), rgba(6,182,212,0.12))', border: '1px solid rgba(124,58,237,0.5)' }, icon: '🎛️', label: 'U Musicraftu', color: '#C4B5FD' },
+              }[block.variant];
               return (
-                <aside key={i} className="mb-8 p-6 rounded-2xl flex gap-4" style={tip ? { background: 'rgba(6,182,212,0.08)', border: '1px solid rgba(6,182,212,0.35)' } : { background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.4)' }}>
-                  <span className="flex-shrink-0 text-2xl leading-none" aria-hidden="true">{tip ? '💡' : '⚠️'}</span>
+                <aside key={i} className="mb-8 p-6 rounded-2xl flex gap-4" style={look.box}>
+                  <span className="flex-shrink-0 text-2xl leading-none" aria-hidden="true">{look.icon}</span>
                   <div>
-                    <p className="text-xs font-bold uppercase mb-1" style={{ letterSpacing: '0.1em', color: tip ? '#67E8F9' : '#FCD34D' }}>{tip ? 'Tip' : 'Pozor'}</p>
+                    <p className="text-xs font-bold uppercase mb-1" style={{ letterSpacing: '0.1em', color: look.color }}>{look.label}</p>
                     <p className="text-lg font-bold mb-2" style={{ color: '#E8E8F0' }}><Inline text={block.title} /></p>
                     <p className="text-base" style={{ color: textColor, lineHeight: 1.7 }}><Inline text={block.text} /></p>
                   </div>
