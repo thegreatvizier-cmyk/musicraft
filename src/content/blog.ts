@@ -42,7 +42,7 @@ export const POSTS: Post[] = [
     date: '2026-11-22',
     readingMinutes: 6,
     cover: 'rejected',
-    coverVariant: { palette: 1, motif: 2 },
+    coverVariant: { palette: 4, motif: 1 },
     body: [
       {
         type: 'p',
