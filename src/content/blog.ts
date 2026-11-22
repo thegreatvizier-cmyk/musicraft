@@ -34,6 +34,99 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: 'umele-streamy-a-placene-playlisty',
+    lang: 'cs',
+    title: 'Umělé streamy a placené playlisty: proč se nevyplatí',
+    description:
+      'Nabídka „10 000 streamů za 50 eur“ nebo garantované místo v playlistu zní lákavě. Jak takové služby fungují, co za ně hrozí a jak poznat, které se vyhnout.',
+    date: '2026-11-22',
+    readingMinutes: 6,
+    cover: 'rejected',
+    body: [
+      {
+        type: 'p',
+        text:
+          'Skoro každý, kdo vydá skladbu, dostane brzy zprávu: „Dostaneme tě do playlistů s milionem sledujících“ nebo „10 000 streamů za pár eur“. Vypadá to jako rychlý start. Ve skutečnosti to často končí smazanými přehráními, zadrženými výnosy a v horším případě staženou skladbou. Vysvětlíme proč.',
+      },
+      { type: 'h2', text: 'Co jsou umělé streamy' },
+      {
+        type: 'p',
+        text:
+          'Umělý stream je přehrání, za kterým nestojí skutečný posluchač, který chtěl skladbu slyšet. Typicky jde o boty, skripty, farmy telefonů nebo playlisty, které nikdo neposlouchá, ale běží dokola. Platformy do jejich odhalování investují obrovské prostředky a stále se zlepšují.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Za umělé streamy můžete pykat, i když jste je nekupovali vy',
+        text: 'Spotify posuzuje přehrání skladby, ne úmysl. Když vám umělé streamy „daruje“ podvodná služba nebo nadšený kamarád, důsledky nese vaše skladba.',
+      },
+      { type: 'h2', text: 'Co platformy dělají, když je odhalí' },
+      {
+        type: 'table',
+        head: ['Postih', 'Co to znamená'],
+        rows: [
+          ['Výnosy se nevyplatí', 'Za umělá přehrání nedostanete nic. Peníze za ně zadrží platforma.'],
+          ['Čísla se opraví', 'Počty přehrání i měsíčních posluchačů se veřejně sníží. Náhlý propad bývá prvním signálem.'],
+          ['Vyřazení z playlistů', 'Skladba může zmizet z playlistů, včetně těch redakčních a algoritmických.'],
+          ['Poplatek', 'Od dubna 2024 si Spotify účtuje labelům a distributorům poplatek za každou skladbu s výrazným podílem umělých streamů.'],
+          ['Stažení skladby', 'Při opakovaném nebo hrubém porušení může platforma skladbu odstranit úplně.'],
+        ],
+      },
+      {
+        type: 'p',
+        text:
+          'Distributor se o problému dozví od platformy a podle pravidel Spotify může vydat varování, přenést na vás poplatek, pozastavit účet nebo skladbu stáhnout. Nejde o zlou vůli distributora: odpovídá platformě za všechno, co doručuje.',
+      },
+      { type: 'h2', text: 'Placené playlisty' },
+      {
+        type: 'p',
+        text:
+          'Spotify to říká jasně: **každá služba, která za peníze slibuje garantované místo v playlistu, porušuje jeho podmínky.** Nezáleží na tom, jak hezky vypadá web nebo kolik sledujících playlist má. Velká část takových playlistů je plněná právě umělými streamy, a vaše skladba v nich pak vypadá podezřele.',
+      },
+      { type: 'h2', text: 'Jak poznat podezřelou nabídku' },
+      {
+        type: 'ul',
+        items: [
+          '**Garance.** „Zaručeně 10 000 streamů“ nebo „garantované umístění“. Skutečný kurátor nic garantovat nemůže.',
+          '**Cena za počet přehrání.** Platíte za čísla, ne za to, že vaši hudbu někdo uslyší.',
+          '**Oslovili vás oni.** Nevyžádaná zpráva na Instagramu nebo e-mail s nabídkou je nejčastější cesta.',
+          '**Playlisty bez života.** Statisíce sledujících, ale žádné ukládání skladeb, divné názvy nebo stovky skladeb všech žánrů.',
+          '**Podezřelé statistiky.** Prudký nárůst přehrání z jedné země nebo z playlistu, který neznáte, a skoro žádní noví sledující.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Co dělat, když už se to stalo',
+        text: 'Pokud jste službu už zaplatili, nebo se skladba objevila v podezřelém playlistu, ozvěte se distributorovi a pošlete mu název a odkaz na službu. Podezřelý playlist můžete nahlásit i přímo Spotify. Čím dřív, tím menší škoda.',
+      },
+      { type: 'h2', text: 'Co funguje místo toho' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Nabídněte skladbu redakci Spotify', text: 'Zdarma v Spotify for Artists, nejpozději 7 dní před vydáním.' },
+          { title: 'Postavte vydání na fanoušcích', text: 'Pre-save, sociální sítě, newsletter. Skuteční posluchači ukládají a vracejí se, a to algoritmy odmění.' },
+          { title: 'Hledejte kurátory, kteří poslouchají', text: 'Kurátoři a blogy, kteří si skladbu poslechnou a mohou ji i odmítnout. Platíte za čas, ne za místo.' },
+          { title: 'Buďte trpěliví', text: 'Pět set skutečných posluchačů, kteří se vrátí, má větší cenu než deset tisíc přehrání od botů.' },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'musicraft',
+        title: 'Proč to hlídáme',
+        text: 'Každé vydání u nás před doručením kontrolujeme a podezřelé případy řešíme s umělcem dřív, než zasáhne platforma. Chráníme tím vaše výnosy i dobré jméno celého katalogu.',
+      },
+      {
+        type: 'cta',
+        title: 'Distribuce bez zkratek',
+        text:
+          'Neslibujeme žebříčky ani místa v playlistech. Dáme vaší hudbě pevný základ: správná metadata, spolehlivé doručení a podporu, když na platformách něco nesedí.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
     slug: 'vlastni-label-a-distributor',
     lang: 'cs',
     title: 'Vlastní label: co mu dává distributor a na co se ptát před podpisem',
