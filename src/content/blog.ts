@@ -34,6 +34,160 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: 'proc-platforma-zamitla-vydani',
+    lang: 'cs',
+    title: 'Proč platforma zamítla vydání: nejčastější důvody a jak je opravit',
+    description:
+      'Vydání se vrátilo s odmítnutím? Nejčastější důvody, proč Spotify, Apple Music a další platformy vydání zamítnou, a co s tím udělat, aby příště prošlo napoprvé.',
+    date: '2026-11-22',
+    readingMinutes: 6,
+    cover: 'rejected',
+    coverVariant: { palette: 1, motif: 2 },
+    body: [
+      {
+        type: 'p',
+        text:
+          'Zamítnuté vydání neznamená, že je s hudbou něco špatně. Většinou jde o detail v obalu, v názvu nebo v údajích o interpretech, který nesedí s pravidly platformy. Většina takových problémů se dá opravit během pár dní. Nejtěžší je zjistit, co přesně je špatně.',
+      },
+      { type: 'h2', text: 'Nejčastější důvody' },
+      {
+        type: 'table',
+        head: ['Důvod', 'Typický příklad', 'Jak to opravit'],
+        rows: [
+          ['Obal nesedí s údaji', 'Na obalu je jméno hosta, které v údajích chybí', 'Text na obalu musí přesně odpovídat interpretovi a názvu vydání'],
+          ['Zakázané prvky na obalu', 'Odkaz na Instagram, logo Spotify, nápis „Out now“', 'Na obalu jen jméno a název, nic navíc'],
+          ['Nekvalitní obal', 'Rozmazaný, malý nebo obyčejná barevná plocha', 'Ostrý čtverec aspoň 3000 × 3000 px'],
+          ['Chybný formát údajů', 'Host v názvu skladby, emoji, VELKÁ PÍSMENA', 'Každý interpret do svého pole, název bez ozdob'],
+          ['Zavádějící údaje', 'Jméno známého interpreta v názvu, aby skladba vyskakovala ve vyhledávání', 'Jen skuteční účinkující a pravdivý název'],
+          ['Duplicita', 'Stejná skladba nahraná znovu pod jiným názvem', 'Jedna nahrávka, jedno vydání, jeden ISRC'],
+          ['Nejasná práva', 'Cover verze bez licence, cizí sample, kupovaný beat bez smlouvy', 'Doložit licenci nebo smlouvu, nebo prvek odstranit'],
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Práva jsou nejvážnější důvod',
+        text: 'Problémy s obalem nebo názvem se opraví za pár minut. Když platforma zjistí, že nahrávka nebo její část patří někomu jinému, jde o porušení práv. Opakované případy mohou vést až k ukončení spolupráce s distributorem. Licence a smlouvy mějte proto vyřešené dřív, než vydání zadáte.',
+      },
+      { type: 'h2', text: 'Co dělat, když vydání zamítnou' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Zjistěte přesný důvod', text: 'Distributor by vám měl říct, co konkrétně platforma vytkla. Obecné „nesplňuje pravidla“ nestačí, doptejte se.' },
+          { title: 'Opravte jen to, co je potřeba', text: 'Měnit celé vydání není nutné. Upravte obal, název nebo údaje, které platforma vytkla.' },
+          { title: 'Doložte, co je potřeba', text: 'U coverů, samplů nebo kupovaných beatů pošlete licenci nebo smlouvu.' },
+          { title: 'Pošlete vydání znovu', text: 'Počítejte s novou kontrolou. Pokud se blíží datum vydání, posuňte ho raději hned.' },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Rezerva v termínu se vyplatí',
+        text: 'Když zadáte vydání aspoň 14 dní předem, oprava se většinou stihne bez posunutí data. Při zadání na poslední chvíli posune vydání každá drobnost.',
+      },
+      { type: 'h2', text: 'Jak tomu předejít' },
+      {
+        type: 'ul',
+        items: [
+          '**Projděte si přípravu vydání.** Zvuk, obal a údaje podle [našeho přehledu](/cs/blog/jak-pripravit-vydani).',
+          '**Text na obalu kontrolujte proti údajům.** Nejčastější chyba vůbec.',
+          '**Uvádějte jen skutečné účinkující.** Žádná jména navíc kvůli vyhledávání.',
+          '**Mějte doklady k právům** ke všemu, co jste sami nevytvořili.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'musicraft',
+        title: 'Kontrolujeme dřív než platformy',
+        text: 'Každé vydání u nás před doručením ručně projde kontrolou obalu, údajů, zvuku i práv. Když něco nesedí, napíšeme vám konkrétně co a jak to opravit. K zamítnutí na straně platformy se tak většina vydání vůbec nedostane.',
+      },
+      {
+        type: 'cta',
+        title: 'Vydání, která projdou napoprvé',
+        text: 'Ruční kontrola každého vydání je u nás součástí každého tarifu. Ušetříte čas i nervy s opravami na poslední chvíli.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
+    slug: 'spotify-for-artists-jak-ziskat-a-nastavit',
+    lang: 'cs',
+    title: 'Jak získat Spotify for Artists a co v něm nastavit',
+    description:
+      'Spotify for Artists je zdarma a bez něj přicházíte o statistiky, nabídku do playlistů i vlastní podobu profilu. Jak k němu získat přístup a co nastavit hned po přihlášení.',
+    date: '2026-11-22',
+    readingMinutes: 5,
+    cover: 'profile',
+    coverVariant: { palette: 2, motif: 0 },
+    body: [
+      {
+        type: 'p',
+        text:
+          'Spotify for Artists je bezplatná aplikace, ve které spravujete svůj profil na Spotify, sledujete posluchače a nabízíte nové skladby redakci playlistů. Kdo ho nemá, přichází o jeden z mála nástrojů, které nic nestojí a skutečně pomáhají.',
+      },
+      { type: 'h2', text: 'Jak získat přístup' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Mějte na Spotify aspoň jedno vydání', text: 'Profil interpreta vzniká automaticky, když distributor doručí první vydání. Stačí, aby bylo doručené, nemusí být ještě venku.' },
+          { title: 'Otevřete artists.spotify.com', text: 'Klikněte na Get Access a přihlaste se svým účtem Spotify, nebo si ho založte.' },
+          { title: 'Najděte svůj profil', text: 'Vyhledejte své jméno, nebo vložte odkaz na profil interpreta.' },
+          { title: 'Ověřte, že jste to vy', text: 'Spotify si žádost prověří, typicky přes odkazy na vaše sociální sítě nebo web. Mějte je v pořádku a s jasnou vazbou na vaši hudbu.' },
+          { title: 'Počkejte na schválení', text: 'Žádosti posuzují lidé. Když ji Spotify zamítne, pošle e-mail s dalším postupem.' },
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Profil si nárokujte ještě před vydáním',
+        text: 'Jakmile je první vydání doručené, můžete si profil nárokovat i před datem vydání. Pomůže vám k tomu odkaz na profil a kód UPC vydání, obojí vám pošle distributor. Do vydání pak stihnete nastavit profil i nabídnout skladbu do playlistů.',
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Profil už někdo nárokoval?',
+        text: 'Na jeden profil může běžet vždy jen jedna žádost. Pokud už profil spravuje váš manažer nebo label, nechte se pozvat do týmu, novou žádost podat nejde.',
+      },
+      { type: 'h2', text: 'Co nastavit hned po přihlášení' },
+      {
+        type: 'table',
+        head: ['Nastavení', 'Proč na něm záleží'],
+        rows: [
+          ['Profilová fotka a záhlaví', 'První dojem. Výrazná fotka v dobrém rozlišení, ideálně stejná jako na sociálních sítích.'],
+          ['Bio', 'Pár vět o tom, kdo jste a co hrajete. Pomůže posluchačům i redaktorům playlistů.'],
+          ['Odkazy na sociální sítě', 'Ať vás fanoušek najde i mimo Spotify.'],
+          ['Artist Pick', 'Skladba nebo playlist připnutý nahoře na profilu. Měňte ho s každým vydáním.'],
+          ['Tým', 'Pozvěte manažera nebo label s odpovídající rolí, ať nemusíte sdílet heslo.'],
+          ['Dvoufázové ověření', 'Chrání profil před zneužitím.'],
+        ],
+      },
+      { type: 'h2', text: 'Co dělat s každým vydáním' },
+      {
+        type: 'ul',
+        items: [
+          '**Nabídněte skladbu redakci playlistů**, nejpozději 7 dní před vydáním. Je to zdarma a zároveň se tím skladba dostane do Release Radaru vašich fanoušků.',
+          '**Přidejte Canvas**, krátkou smyčku za skladbou v přehrávači.',
+          '**Aktualizujte Artist Pick** na nové vydání.',
+          '**Sledujte statistiky**: odkud posluchači jsou, z jakých playlistů přicházejí a co ukládají.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'musicraft',
+        title: 'Když si nevíte rady',
+        text: 'Přístup do Spotify for Artists si nárokujete sami, ale nejste v tom sami. Pošleme vám odkaz na profil i kód UPC a když se nárok zasekne nebo vydání skončí na cizím profilu, vyřešíme to s vámi.',
+      },
+      {
+        type: 'cta',
+        title: 'Distribuce, po které profil sedí',
+        text: 'Při zakládání interpreta u nás zadáváme ID jeho profilů na platformách, takže vydání míří rovnou na správné místo.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
     slug: 'umele-streamy-a-placene-playlisty',
     lang: 'cs',
     title: 'Umělé streamy a placené playlisty: proč se nevyplatí',
