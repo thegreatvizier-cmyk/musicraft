@@ -5,6 +5,8 @@ import { Analytics } from '@vercel/analytics/react';
 import ChatBubble from '@/components/ChatBubble';
 import PartnerRefCapture from '@/components/PartnerRefCapture';
 
+import StructuredData from './StructuredData';
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -34,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <StructuredData />
         {children}
         <Analytics />
         <ChatBubble />

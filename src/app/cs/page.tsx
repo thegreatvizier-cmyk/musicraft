@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { FaqStructuredData } from '../StructuredData';
 import Link from 'next/link';
 import MusicraftNav from '../musicraft/components/MusicraftNav';
 import MusicraftFooter from '../musicraft/components/MusicraftFooter';
@@ -747,6 +748,7 @@ export default function MusicraftHomeCs() {
           </div>
         </section>
 
+        <FaqStructuredData items={FAQ_ITEMS} />
         {/* FAQ */}
         <section id="faq" className="py-24 px-6" style={{ background: 'rgba(255,255,255,0.015)', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           <div className="max-w-3xl mx-auto">
