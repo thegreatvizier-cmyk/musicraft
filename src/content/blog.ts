@@ -34,6 +34,121 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
+    slug: 'jak-nahrat-hudbu-na-spotify',
+    lang: 'cs',
+    title: 'Jak nahrát hudbu na Spotify a další platformy: průvodce krok za krokem',
+    description:
+      'Na Spotify ani Apple Music nahrát hudbu sami nemůžete, potřebujete distributora. Co si připravit, jak vybrat distributora a jak vydání proběhne krok za krokem.',
+    date: '2026-11-25',
+    readingMinutes: 7,
+    cover: 'upload',
+    coverVariant: { palette: 0, motif: 2 },
+    body: [
+      {
+        type: 'p',
+        text:
+          'Na YouTube nahrajete video sami. Na Spotify, Apple Music, TIDAL nebo Deezer to nejde. Tyto platformy přijímají hudbu jen od distributorů a vydavatelství, se kterými mají smlouvu. Distributor za vás hudbu doručí, postará se o technické požadavky jednotlivých platforem a vyplatí vám peníze za streamy.',
+      },
+      {
+        type: 'flow',
+        nodes: [
+          { label: 'Vy', sub: 'nahrávka, obal, údaje' },
+          { label: 'Distributor', sub: 'kontrola a doručení' },
+          { label: 'Platformy', sub: 'Spotify, Apple Music, TIDAL…' },
+        ],
+        caption: 'Peníze za streamy putují stejnou cestou zpátky: od platforem přes distributora k vám.',
+      },
+      { type: 'h2', text: 'Co si připravit' },
+      {
+        type: 'table',
+        head: ['Co', 'Požadavek'],
+        rows: [
+          ['Nahrávka', 'Bezztrátový soubor WAV nebo FLAC, obvykle aspoň 16 bit / 44,1 kHz. MP3 většina distributorů nepřijme.'],
+          ['Obal', 'Čtverec aspoň 3000 × 3000 px, ostrý, bez odkazů, log platforem a nápisů typu „Out now“.'],
+          ['Název a interpreti', 'Přesně tak, jak mají být vidět. Hosté a remixéři každý do svého pole, ne do názvu skladby.'],
+          ['Autoři', 'Jména autorů hudby a textu. Platformy je zobrazují a potřebují je i kolektivní správci, jako je OSA.'],
+          ['Datum vydání', 'Ideálně 2 až 4 týdny dopředu, aby byl čas na pitch do playlistů a pre-save.'],
+          ['Kódy ISRC a UPC', 'Identifikátory skladby a vydání. Nemáte-li vlastní, přidělí je distributor.'],
+        ],
+      },
+      {
+        type: 'p',
+        text:
+          'Podrobný kontrolní seznam najdete v článku [Jak připravit vydání](/cs/blog/jak-pripravit-vydani). Proč se vyplatí vydávat s předstihem, vysvětlujeme v článku [Proč vydávat 14 dní předem](/cs/blog/proc-vydavat-14-dni-predem-a-pre-save).',
+      },
+      { type: 'h2', text: 'Jak vybrat distributora' },
+      {
+        type: 'p',
+        text:
+          'Na Spotify se dostanete přes kteréhokoli z nich. Liší se tím, kolik práce zůstane na vás, jak rychle vám někdo pomůže, když se něco pokazí, a jak platíte.',
+      },
+      {
+        type: 'table',
+        head: ['Typ', 'Příklady', 'Pro koho'],
+        rows: [
+          ['Samoobslužná služba', 'DistroKid, TuneCore, Amuse, CD Baby', 'Vše si nahrajete a vyřešíte sami. Levné, ale podpora bývá přes chatbota nebo tikety.'],
+          ['Kurátorovaná distribuce', 'Musicraft', 'Vydání někdo zkontroluje před odesláním a máte konkrétního člověka na problémy s platformami.'],
+          ['Vydavatelství', 'Velké i nezávislé labely', 'Kromě distribuce i propagace a financování. Obvykle za podíl z příjmů a část práv.'],
+        ],
+      },
+      {
+        type: 'p',
+        text: 'Při výběru se zeptejte hlavně na tyto věci:',
+      },
+      {
+        type: 'ul',
+        items: [
+          '**Jak platíte:** roční nebo měsíční předplatné, poplatek za každé vydání, nebo procento z příjmů.',
+          '**Co se stane, když přestanete platit:** zůstane hudba online, nebo zmizí?',
+          '**Komu patří práva:** u distributora by vám měla zůstat všechna.',
+          '**Kdo vám pomůže:** konkrétní člověk, nebo jen formulář? Rozdíl poznáte, až skončí skladba na cizím profilu nebo platforma vydání zamítne.',
+          '**Na které platformy doručuje:** včetně TikToku, Instagramu a distribuce videoklipů.',
+        ],
+      },
+      {
+        type: 'callout',
+        variant: 'warning',
+        title: 'Pozor na sliby streamů a playlistů',
+        text: 'Distributor nebo služba, která za poplatek garantuje streamy nebo místo v playlistu, vás může dostat do problémů. Umělé streamy platformy odhalí a hudbu mohou stáhnout. Víc v článku [Umělé streamy a placené playlisty](/cs/blog/umele-streamy-a-placene-playlisty).',
+      },
+      { type: 'h2', text: 'Jak vydání proběhne' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Zadáte vydání', text: 'Nahrajete soubory, obal a vyplníte údaje u distributora. Uvedete i odkaz na svůj existující profil na Spotify, pokud už nějaký máte.' },
+          { title: 'Kontrola', text: 'Distributor a pak i platformy zkontrolují obal, údaje a práva. Chyby v tomhle kroku jsou nejčastější důvod zamítnutí.' },
+          { title: 'Doručení', text: 'Vydání odejde na platformy. Na Spotify se objeví v den vydání, většinou o půlnoci místního času.' },
+          { title: 'Pitch do playlistů', text: 'Jakmile se vydání objeví ve Spotify for Artists, nabídněte skladbu redakci playlistů. Nejpozději 7 dní před vydáním.' },
+          { title: 'Po vydání', text: 'Sledujte statistiky, sdílejte odkaz a výplaty za streamy chodí podle výkazů platforem, obvykle se zpožděním dvou až tří měsíců.' },
+        ],
+      },
+      {
+        type: 'p',
+        text:
+          'Když vydání neprojde, pomůže článek [Proč platforma zamítla vydání](/cs/blog/proc-platforma-zamitla-vydani). Pokud vydáváte poprvé, po prvním vydání si zažádejte o [přístup do Spotify for Artists](/cs/blog/spotify-for-artists-jak-ziskat-a-nastavit).',
+      },
+      {
+        type: 'callout',
+        variant: 'tip',
+        title: 'Už máte hudbu u jiného distributora?',
+        text: 'Přejít jde bez ztráty streamů a statistik, pokud zachováte stejné kódy ISRC a UPC. Postup popisujeme v článku [Jak přejít k jinému distributorovi](/cs/blog/jak-prejit-k-jinemu-distributorovi).',
+      },
+      {
+        type: 'callout',
+        variant: 'musicraft',
+        title: 'Jak to funguje u Musicraftu',
+        text: 'Každé vydání před odesláním zkontrolujeme, aby prošlo napoprvé. Doručujeme na Spotify, Apple Music, TIDAL, YouTube Music, TikTok, Instagram a desítky dalších platforem, videoklipy i na Spotify, Apple Music a VEVO. A když se něco pokazí, řešíte to s konkrétním člověkem v češtině.',
+      },
+      {
+        type: 'cta',
+        title: 'Chcete vydat hudbu na Spotify?',
+        text: 'Pošlete nám přihlášku a ozveme se vám s dalším postupem.',
+        button: 'Chci distribuci',
+        href: '/musicraft/apply',
+      },
+    ],
+  },
+  {
     slug: 'proc-platforma-zamitla-vydani',
     lang: 'cs',
     title: 'Proč platforma zamítla vydání: nejčastější důvody a jak je opravit',

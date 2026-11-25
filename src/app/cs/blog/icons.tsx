@@ -8,7 +8,8 @@ export type CoverIcon =
   | 'coins'
   | 'video'
   | 'label'
-  | 'globe';
+  | 'globe'
+  | 'upload';
 
 const ICONS: Record<CoverIcon, string> = {
   switch: '<path d="M4 8h14"/><path d="M14 4l4 4-4 4"/><path d="M20 16H6"/><path d="M10 12l-4 4 4 4"/>',
@@ -20,6 +21,7 @@ const ICONS: Record<CoverIcon, string> = {
   video: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 9l5 3-5 3V9z"/>',
   label: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3a9 9 0 0 1 9 9"/>',
   globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"/>',
+  upload: '<path d="M12 15V4"/><path d="M7.5 8.5L12 4l4.5 4.5"/><path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>',
 };
 
 // Colour pairs and background motifs that covers rotate through, all within the Musicraft palette.
