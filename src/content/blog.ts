@@ -34,96 +34,90 @@ export type Post = {
 
 export const POSTS: Post[] = [
   {
-    slug: 'srovnani-distributoru-musicraft-distrokid-tunecore',
+    slug: 'alternativa-k-distrokidu',
     lang: 'cs',
-    title: 'Srovnání distributorů: Musicraft, DistroKid, TuneCore, CD Baby, Amuse a Ditto',
+    title: 'Alternativa k DistroKidu: kdy se vyplatí distributor s lidskou podporou',
     description:
-      'Kolik stojí DistroKid, TuneCore, CD Baby, Amuse, Ditto a Musicraft, kolik si berou z příjmů, co se stane, když přestanete platit, a pro koho se který distributor hodí.',
+      'DistroKid a podobné samoobslužné služby jsou levné, dokud se nic nepokazí. Kdy přestanou stačit, kolik vás stojí doopravdy a co dostanete u kurátorované distribuce jako Musicraft.',
     date: '2026-11-26',
-    readingMinutes: 7,
+    readingMinutes: 6,
     cover: 'compare',
     coverVariant: { palette: 3, motif: 3 },
     body: [
       {
         type: 'p',
         text:
-          'Na Spotify, Apple Music a další platformy se dostanete přes kteréhokoli z nich. Liší se cenou, tím, kolik si berou z vašich příjmů, co se stane s hudbou, když přestanete platit, a hlavně tím, kolik práce a rizika zůstane na vás. Píšeme to jako distributor, takže Musicraft v tabulce je. Snažili jsme se ale být féroví: pro řadu umělců je levnější samoobslužná služba lepší volba.',
+          'DistroKid, TuneCore, Amuse nebo Ditto jsou samoobslužné služby. Zaregistrujete se, nahrajete hudbu a za pár dní je na Spotify. Pro spoustu umělců je to dobrá volba. Jenže všechno od vyplnění údajů po řešení problémů zůstává na vás, a co se pokazí, řešíte přes formulář s člověkem, kterého nikdy neuvidíte. Tenhle článek je pro ty, kdo už narazili, nebo narazit nechtějí.',
       },
-      { type: 'h2', text: 'Přehled cen a podmínek' },
       {
-        type: 'table',
-        head: ['Distributor', 'Jak platíte', 'Základní cena', 'Podíl z příjmů'],
-        rows: [
-          ['DistroKid', 'Roční předplatné, neomezeně vydání', 'od 24,99 USD/rok', '0 %'],
-          ['TuneCore', 'Roční předplatné', 'od 24,99 USD/rok', '0 % ze streamů, 20 % z monetizace na sociálních sítích'],
-          ['CD Baby', 'Jednorázově za vydání', '9,99 USD za singl, 14,99 USD za album', '9 %'],
-          ['Amuse', 'Roční předplatné', 'od 23,99 USD/rok', '0 % s předplatným, 25 % bez něj'],
-          ['Ditto Music', 'Roční předplatné', 'od 19 USD/rok', '0 %'],
-          ['Musicraft', 'Měsíční nebo roční předplatné, po schválení přihlášky', 'Lite 490 Kč/měsíc, Pro 890 Kč/měsíc bez DPH', '10 % (Lite), 5 % (Pro)'],
+        type: 'flow',
+        nodes: [
+          { label: 'Samoobslužná služba', sub: 'nahrajete sami, řešíte sami' },
+          { label: 'Kurátorovaná distribuce', sub: 'kontrola a podpora od člověka' },
         ],
+        caption: 'Na Spotify se dostanete oběma cestami. Rozdíl je v tom, kdo nese práci a riziko.',
       },
-      {
-        type: 'p',
-        text:
-          'Ceny konkurence jsou orientační podle stavu na podzim 2026 a mění se. Před rozhodnutím si je ověřte na webu dané služby. Doplňky jako YouTube Content ID nebo vydávání videoklipů bývají placené zvlášť.',
-      },
-      { type: 'h2', text: 'Co se stane, když přestanete platit' },
-      {
-        type: 'p',
-        text: 'Na tohle se lidé při výběru ptají nejméně a později to nejvíc bolí.',
-      },
+      { type: 'h2', text: 'Kdy samoobslužná služba přestane stačit' },
       {
         type: 'ul',
         items: [
-          '**DistroKid:** vydání se stáhnou z platforem, pokud si za ně předem nezaplatíte doplněk „Leave a Legacy“.',
-          '**Amuse:** hudba zůstane online, ale Amuse si začne brát 25 % z příjmů.',
-          '**CD Baby:** platíte jednou, hudba zůstává online i bez dalších plateb.',
-          '**Musicraft:** podmínky ukončení jsou ve smlouvě a katalog můžete převést jinam se zachováním kódů ISRC a UPC, tedy bez ztráty streamů.',
+          '**Platforma vám zamítne vydání** a vy nevíte proč. Podpora odpoví obecnou šablonou a datum vydání se blíží.',
+          '**Skladba skončí na profilu jiného umělce** se stejným jménem. Oprava přes tikety trvá týdny a fanoušci mezitím hledají vaši hudbu u někoho cizího.',
+          '**Měníte distributora** a bojíte se, že přijdete o streamy, statistiky a místa v playlistech.',
+          '**Máte label nebo víc interpretů** a potřebujete přehledné výkazy, ze kterých vyplatíte každého zvlášť.',
+          '**Chcete vydat videoklip** na Spotify nebo Apple Music, ale služba to nenabízí nebo jen za příplatek.',
         ],
       },
-      { type: 'h2', text: 'V čem se distributoři liší kromě ceny' },
+      { type: 'h2', text: 'Kolik vás to stojí doopravdy' },
+      {
+        type: 'p',
+        text:
+          'Roční předplatné samoobslužné služby vypadá levně. Skutečná cena se ale skládá i z věcí, které na první pohled nevidíte:',
+      },
       {
         type: 'table',
-        head: ['', 'Samoobslužné služby', 'Musicraft'],
+        head: ['Skrytý náklad', 'Jak se projeví'],
         rows: [
-          ['Kdo může vydávat', 'Kdokoli, okamžitě po registraci', 'Po schválení přihlášky, katalog posoudíme předem'],
-          ['Kontrola před odesláním', 'Většinou automatická', 'Každé vydání zkontroluje člověk'],
-          ['Podpora', 'Formulář nebo tikety, odpověď může trvat dny', 'Konkrétní člověk v češtině nebo angličtině'],
-          ['Problémy na straně platforem', 'Řešíte převážně sami přes podporu', 'Řešíme je za vás přímo s platformami'],
-          ['Videoklipy na Spotify a Apple Music', 'Liší se podle služby, ověřte předem', 'Pro všechny umělce'],
-          ['Výkazy', 'Online přehled', 'Uzavřené měsíční výkazy podle platforem a skladeb, ke stažení v PDF'],
-        ],
-      },
-      { type: 'h2', text: 'Komu se hodí co' },
-      {
-        type: 'steps',
-        items: [
-          { title: 'Vydáváte často a chcete co nejnižší cenu', text: 'DistroKid nebo Ditto. Za pevnou roční částku vydáte neomezeně skladeb. Počítejte s tím, že vše od údajů po řešení problémů zvládáte sami.' },
-          { title: 'Vydáváte jen občas a nechcete předplatné', text: 'CD Baby. Zaplatíte jednou za vydání a hudba zůstane online. Výměnou si bere 9 % z příjmů.' },
-          { title: 'Začínáte a chcete hlavně vyzkoušet, jak to funguje', text: 'Amuse nebo levný tarif kterékoli samoobslužné služby. Jen si předem přečtěte, co se stane, když předplatné zrušíte.' },
-          { title: 'Máte label, větší katalog nebo vám záleží na tom, aby vše proběhlo bez zádrhelů', text: 'Tady dává smysl kurátorovaná distribuce jako Musicraft. Platíte víc, ale vydání někdo zkontroluje, problémy s profily nebo zamítnutím řeší člověk a máte jasné výkazy pro všechny interprety.' },
+          ['Placené doplňky', 'YouTube Content ID, videoklipy, ochrana proti stažení hudby po zrušení předplatného. U některých služeb se platí zvlášť, třeba za každou skladbu.'],
+          ['Zamítnuté vydání', 'Posunuté datum, propadlý pitch do playlistů a promo naplánované na den, kdy nic nevyšlo.'],
+          ['Zrušení předplatného', 'U DistroKidu se hudba stáhne, pokud si předem nezaplatíte doplněk. U Amuse zůstane online, ale služba si začne brát 25 % z příjmů.'],
+          ['Váš čas', 'Hodiny strávené vyplňováním údajů, opravami a čekáním na odpověď podpory.'],
         ],
       },
       {
         type: 'callout',
         variant: 'warning',
-        title: 'Na co si dát pozor u každého distributora',
-        text: 'Sliby garantovaných streamů nebo míst v playlistech a služby, které je prodávají. Umělé streamy platformy odhalí a hudbu mohou stáhnout. Víc v článku [Umělé streamy a placené playlisty](/cs/blog/umele-streamy-a-placene-playlisty).',
+        title: 'Pozor na sliby streamů',
+        text: 'Ať zvolíte kohokoli, vyhněte se službám, které garantují streamy nebo místa v playlistech. Umělé streamy platformy odhalí a hudbu mohou stáhnout. Víc v článku [Umělé streamy a placené playlisty](/cs/blog/umele-streamy-a-placene-playlisty).',
+      },
+      { type: 'h2', text: 'Co dostanete u Musicraftu' },
+      {
+        type: 'steps',
+        items: [
+          { title: 'Kontrolu každého vydání člověkem', text: 'Než vydání odejde na platformy, projdeme obal, údaje i práva. Většina důvodů k zamítnutí se tak vůbec neobjeví. Víc o nejčastějších důvodech v článku [Proč platforma zamítla vydání](/cs/blog/proc-platforma-zamitla-vydani).' },
+          { title: 'Řešení problémů přímo s platformami', text: 'Skladba na cizím profilu, chybné údaje, zaseknutý nárok na profil. Neposíláme vás do formuláře, řešíme to za vás.' },
+          { title: 'Konkrétního člověka v češtině', text: 'Víte, komu píšete, a odpověď dostanete v garantované lhůtě: u tarifu Pro do jednoho pracovního dne.' },
+          { title: 'Videoklipy pro všechny umělce', text: 'Oficiální videoklipy doručujeme na Spotify, Apple Music, VEVO a TIDAL bez ohledu na tarif. Víc v článku [Videoklip na Spotify a Apple Music](/cs/blog/videoklip-na-spotify-a-apple-music).' },
+          { title: 'Přechod bez ztrát', text: 'Katalog od jiného distributora převedeme se stejnými kódy ISRC a UPC, takže zůstanou streamy, statistiky i místa v playlistech. Postup najdete v článku [Jak přejít k jinému distributorovi](/cs/blog/jak-prejit-k-jinemu-distributorovi).' },
+          { title: 'Výkazy pro labely', text: 'Uzavřené měsíční výkazy podle platforem a skladeb, ke stažení v PDF. Vyúčtování interpretům je pak otázka minut.' },
+        ],
+      },
+      { type: 'h2', text: 'Pro koho Musicraft není' },
+      {
+        type: 'p',
+        text:
+          'Pokud vydáváte desítky skladeb ročně, všechno zvládáte sami a hlavní je pro vás co nejnižší cena, samoobslužná služba vám nejspíš bude stačit. Musicraft dává smysl tam, kde je hudba vaše práce nebo podnikání a kde vás každé zaseknuté vydání stojí peníze a nervy.',
       },
       {
         type: 'callout',
-        variant: 'tip',
-        title: 'Změna distributora není konečná',
-        text: 'Když zjistíte, že vám služba nevyhovuje, můžete přejít jinam bez ztráty streamů a statistik. Postup najdete v článku [Jak přejít k jinému distributorovi](/cs/blog/jak-prejit-k-jinemu-distributorovi).',
-      },
-      {
-        type: 'p',
-        text: 'Pokud vydáváte poprvé, začněte článkem [Jak nahrát hudbu na Spotify a další platformy](/cs/blog/jak-nahrat-hudbu-na-spotify).',
+        variant: 'musicraft',
+        title: 'Jak funguje přihláška',
+        text: 'Musicraft není okamžitá registrace. Každý katalog si před spoluprací projdeme, abychom věděli, že vám umíme pomoct. Ceny začínají na 490 Kč měsíčně bez DPH, podrobnosti najdete v [ceníku](/cs#pricing).',
       },
       {
         type: 'cta',
-        title: 'Zvažujete Musicraft?',
-        text: 'Pošlete nám přihlášku s odkazem na vaši hudbu. Ozveme se a probereme, jestli si sedneme.',
+        title: 'Hledáte alternativu k DistroKidu?',
+        text: 'Pošlete nám přihlášku s odkazem na vaši hudbu. Ozveme se a probereme, jak by přechod vypadal.',
         button: 'Chci distribuci',
         href: '/musicraft/apply',
       },
