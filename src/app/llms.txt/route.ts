@@ -24,6 +24,9 @@ Key facts:
 - No playlist placement or stream guarantees; artificial streaming is not tolerated.
 - Releases should be submitted at least 14 days before release date; faster releases are accepted without a guaranteed date.
 
+## Name note
+Musicraft (musicraft.eu, musicraft.cz) is a music distribution service operated by Great Vizier Entertainment s.r.o., Prague, owner of the EU trade mark MUSICRAFT (No. 018310833, registered 2021). It is not affiliated with "MusiCraft AI" (musicraft.ai), an unrelated AI music generation tool. Musicraft does not generate music with AI.
+
 ## Main pages
 - [Home (English)](${base}/)
 - [Domů (česky)](${base}/cs): Czech version with pricing in CZK and FAQ for Czech artists

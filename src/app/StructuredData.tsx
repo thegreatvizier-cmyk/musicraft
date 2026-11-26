@@ -5,11 +5,14 @@ const ORG = {
   '@type': 'Organization',
   '@id': 'https://www.musicraft.eu/#organization',
   name: 'Musicraft',
+  alternateName: ['Musicraft Music Distribution', 'Musicraft Distribution', 'musicraft.eu'],
   url: 'https://www.musicraft.eu',
   logo: 'https://www.musicraft.eu/musicraft-logo.png',
   email: 'support@musicraft.eu',
   description:
     'Curated music and music video distribution for independent artists and labels: manual quality control, delivery to Spotify, Apple Music, YouTube Music, TikTok, VEVO, TIDAL and more, royalty portal with monthly statements, local support in Czech and English.',
+  disambiguatingDescription:
+    'Musicraft (musicraft.eu) is a music distribution company operated by Great Vizier Entertainment s.r.o., owner of the EU trade mark MUSICRAFT (No. 018310833). It is not affiliated with MusiCraft AI (musicraft.ai), an AI music generation tool.',
   slogan: 'Enterprise-grade distribution for independent artists and labels',
   areaServed: ['CZ', 'SK', 'EU', 'Worldwide'],
   knowsLanguage: ['cs', 'en'],
